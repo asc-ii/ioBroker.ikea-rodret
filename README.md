@@ -27,7 +27,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 	### **WORK IN PROGRESS**
 -->
 
-### **WORK IN PROGRESS**
+### 0.0.1 (2025-09-22)
 
 - (asc-ii) initial release
 

@@ -43,15 +43,8 @@
 			"uk": "Адаптер iObroker для Dimmer Ikea Rodret (E2201), який безпосередньо зменшує або освітлює налаштоване світло, поки кнопка зберігається - не потрібні спеціальні сценарії.",
 			"zh-cn": "宜家Rodret Dimmer（E2201）的iObroker适配器，该适配器在保留按钮时直接使配置的灯直接变暗或更亮，而无需自定义脚本。"
 		},
-		"authors": [
-			"Adrian Schyja <adrian.schyja@gmail.com>"
-		],
-		"keywords": [
-			"dimmer",
-			"switch",
-			"ikea",
-			"rodret"
-		],
+		"authors": ["Adrian Schyja <adrian.schyja@gmail.com>"],
+		"keywords": ["dimmer", "switch", "ikea", "rodret"],
 		"licenseInformation": {
 			"type": "free",
 			"license": "MIT"
