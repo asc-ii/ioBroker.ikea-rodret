@@ -31,20 +31,27 @@
 			"zh-cn": "宜家罗德雷特"
 		},
 		"desc": {
-			"en": "ioBroker adapter for the IKEA RODRET Dimmer (E2201) that directly dims or brightens a configured light while a button is held—no custom scripts needed.",
-			"de": "IOBROKER -Adapter für den IKEA Rodret Dimmer (E2201), der ein konfiguriertes Licht direkt dimmiert oder aufhellt, während eine Taste gehalten wird - keine benutzerdefinierten Skripte benötigt.",
-			"ru": "Адаптер iobroker для Ikea rodret dimmer (E2201), который напрямую умол или осветляет настроенный свет, пока удерживается кнопка - не требуются пользовательские сценарии.",
-			"pt": "Adaptador do IOBROKER para o IKEA Rodret Dimmer (E2201) que diminui diretamente ou ilumina uma luz configurada enquanto um botão é mantido - sem scripts personalizados necessários.",
-			"nl": "IOBROKER -adapter voor de IKEA Rodret -dimmer (E2201) die direct een geconfigureerd licht dimt of fleurt terwijl een knop wordt vastgehouden - geen aangepaste scripts nodig.",
-			"fr": "Adaptateur IOBRoker pour le grain IKEA Rodret (E2201) qui diminue directement ou éclaire une lumière configurée pendant un bouton, aucun script personnalisé nécessaire.",
-			"it": "L'adattatore IoBroker per Ikea Roddret Dimmer (E2201) che si attenua direttamente o illumina una luce configurata mentre viene tenuto un pulsante, non necessari script personalizzati.",
-			"es": "El adaptador IOBROKER para el atenuador IKEA RODRET (E2201) que atenúa o ilumina directamente una luz configurada mientras se mantiene un botón, no se necesitan scripts personalizados.",
-			"pl": "Adapter IOBRoker dla ściemniacza IKEA Rodret (E2201), który bezpośrednio przyciemnia lub rozjaśnia skonfigurowane światło, podczas gdy przycisk jest przechowywany - nie potrzebne niestandardowe skrypty.",
-			"uk": "Адаптер iObroker для Dimmer Ikea Rodret (E2201), який безпосередньо зменшує або освітлює налаштоване світло, поки кнопка зберігається - не потрібні спеціальні сценарії.",
-			"zh-cn": "宜家Rodret Dimmer（E2201）的iObroker适配器，该适配器在保留按钮时直接使配置的灯直接变暗或更亮，而无需自定义脚本。"
+			"en": "IKEA RODRET Dimmer (E2201) for dimming or brightening a configured light.",
+			"de": "IKEA RODRET Dimmer (E2201) zum Dimmen oder Aufhellen eines konfigurierten Lichts.",
+			"ru": "IKEA RODRET Dimmer (E2201) для затемнения или осветления сконфигурированного света.",
+			"pt": "IKEA RODRET Dimmer (E2201) para diminuir ou iluminar uma luz configurada.",
+			"nl": "IKEA RODRET Dimmer (E2201) voor het dimmen of oplichten van een geconfigureerd licht.",
+			"fr": "IKEA RODRET Dimmer (E2201) pour réduire ou éclairer une lumière configurée.",
+			"it": "Dimmer IKEA RODRET (E2201) per la dimmerazione o l'illuminazione di una luce configurata.",
+			"es": "IKEA RODRET Dimmer (E2201) para atenuar o iluminar una luz configurada.",
+			"pl": "IKEA RODRET Dimmer (E2201) do przyciemniania lub rozjaśniania skonfigurowanego światła.",
+			"uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
+			"zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
 		},
-		"authors": ["Adrian Schyja <adrian.schyja@gmail.com>"],
-		"keywords": ["dimmer", "switch", "ikea", "rodret"],
+		"authors": [
+			"Adrian Schyja <adrian.schyja@gmail.com>"
+		],
+		"keywords": [
+			"dimmer",
+			"switch",
+			"ikea",
+			"rodret"
+		],
 		"licenseInformation": {
 			"type": "free",
 			"license": "MIT"
