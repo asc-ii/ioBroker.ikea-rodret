@@ -13,7 +13,8 @@
     "dimmer",
     "switch",
     "ikea",
-    "rodret"
+    "rodret",
+    "ioBroker"
   ],
   "repository": {
     "type": "git",
