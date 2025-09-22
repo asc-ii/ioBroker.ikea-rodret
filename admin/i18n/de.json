@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "Helligkeit ändert sich pro Schritt, wenn die Dimmer -Taste gedrückt wird.",
+	"Dimmer settings": "Dimmereinstellungen",
+	"Interval (ms)": "Intervall (MS)",
+	"Light brightness object": "Lichthelligkeitsobjekt",
+	"Light settings": "Lichteinstellungen",
+	"Light switch object": "Lichtschalterobjekt",
+	"Milliseconds between each dimming step.": "Millisekunden zwischen jedem Dimmschritt.",
+	"RODRET object": "Rodet -Objekt",
+	"RODRET settings": "Adaptereinstellungen für Rodret Adapter",
+	"Select a device": "Wählen Sie ein Gerät aus",
+	"Select a dimmer": "Wählen Sie einen Dimmer",
+	"Select a light": "Wählen Sie ein Licht",
+	"Select the RODRET device": "Wählen Sie das Rodret -Gerät aus",
+	"Select the brightness/dimmer": "Wählen Sie die Helligkeit/den Dimmer",
+	"Select the light switch": "Wählen Sie den Lichtschalter aus",
+	"Step (%)": "Schritt (%)"
+}

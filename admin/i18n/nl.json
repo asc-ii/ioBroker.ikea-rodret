@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "De helderheid verandert per stap bij het vasthouden van de dimmer -knop.",
+	"Dimmer settings": "Dimmer -instellingen",
+	"Interval (ms)": "Interval (MS)",
+	"Light brightness object": "Lichte helderheidsobject",
+	"Light settings": "Lichtinstellingen",
+	"Light switch object": "Lichtschakelaarobject",
+	"Milliseconds between each dimming step.": "Milliseconden tussen elke dimstap.",
+	"RODRET object": "Rodret -object",
+	"RODRET settings": "Adapterinstellingen voor Rodret -adapter",
+	"Select a device": "Selecteer een apparaat",
+	"Select a dimmer": "Selecteer een dimmer",
+	"Select a light": "Selecteer een licht",
+	"Select the RODRET device": "Selecteer het Rodret -apparaat",
+	"Select the brightness/dimmer": "Selecteer de helderheid/dimmer",
+	"Select the light switch": "Selecteer de lichtschakelaar",
+	"Step (%)": "Stap (%)"
+}

@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "Zmiana jasności na krok podczas trzymania przycisku ściemniacza.",
+	"Dimmer settings": "Ustawienia ściemniacza",
+	"Interval (ms)": "Interwał (MS)",
+	"Light brightness object": "Obiekt jasności światła",
+	"Light settings": "Ustawienia światła",
+	"Light switch object": "Obiekt przełącznika światła",
+	"Milliseconds between each dimming step.": "Milisekundy między każdym etapem przyciemniania.",
+	"RODRET object": "Obiekt Rodreta",
+	"RODRET settings": "Ustawienia adaptera adaptera Rodreta",
+	"Select a device": "Wybierz urządzenie",
+	"Select a dimmer": "Wybierz ściemniacz",
+	"Select a light": "Wybierz światło",
+	"Select the RODRET device": "Wybierz urządzenie Rodret",
+	"Select the brightness/dimmer": "Wybierz jasność/ściemniacz",
+	"Select the light switch": "Wybierz przełącznik światła",
+	"Step (%)": "Krok (%)"
+}

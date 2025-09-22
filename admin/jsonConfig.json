@@ -1,0 +1,100 @@
+{
+	"i18n": true,
+	"type": "panel",
+	"items": {
+		"_headerRodretSettings": {
+			"type": "header",
+			"text": "RODRET settings",
+			"size": 3,
+			"sm": 12,
+			"md": 12,
+			"lg": 12
+		},
+		"rodretId": {
+			"type": "objectId",
+			"label": "RODRET object",
+			"help": "Select the RODRET device",
+			"types": ["device"],
+			"validator": "((data.rodretId).toString().length > 0)",
+			"validatorErrorText": "Select a device",
+			"validatorNoSaveOnError": true,
+			"newLine": false,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"_headerLightSettings": {
+			"newLine": true,
+			"type": "header",
+			"text": "Light settings",
+			"size": 3,
+			"sm": 12,
+			"md": 12,
+			"lg": 12
+		},
+		"lightId": {
+			"type": "objectId",
+			"label": "Light switch object",
+			"help": "Select the light switch",
+			"types": ["state"],
+			"validator": "((data.lightId).toString().length > 0)",
+			"validatorErrorText": "Select a light",
+			"validatorNoSaveOnError": true,
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"brightnessId": {
+			"type": "objectId",
+			"label": "Light brightness object",
+			"help": "Select the brightness/dimmer",
+			"types": ["state"],
+			"validator": "((data.brightnessId).toString().length > 0)",
+			"validatorErrorText": "Select a dimmer",
+			"validatorNoSaveOnError": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"_headerAdvancedSettings": {
+			"newLine": true,
+			"type": "header",
+			"text": "Dimmer settings",
+			"size": 3,
+			"sm": 12,
+			"md": 12,
+			"lg": 12
+		},
+		"dimStep": {
+			"type": "number",
+			"label": "Step (%)",
+			"help": "Brightness change per step when holding the dimmer button.",
+			"min": 5,
+			"max": 25,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
+		"dimInterval": {
+			"type": "number",
+			"label": "Interval (ms)",
+			"help": "Milliseconds between each dimming step.",
+			"min": 25,
+			"max": 1000,
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		}
+	}
+}

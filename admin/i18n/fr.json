@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "Changement de luminosité par étape lors de la maintenance du bouton de gradation.",
+	"Dimmer settings": "Gradateur",
+	"Interval (ms)": "Intervalle (MS)",
+	"Light brightness object": "Objet de luminosité légère",
+	"Light settings": "Paramètres légers",
+	"Light switch object": "Objet de l'interrupteur d'éclairage",
+	"Milliseconds between each dimming step.": "Des millisecondes entre chaque étape de gradation.",
+	"RODRET object": "Objet Rodret",
+	"RODRET settings": "Paramètres de l'adaptateur pour l'adaptateur Rodret",
+	"Select a device": "Sélectionnez un appareil",
+	"Select a dimmer": "Sélectionnez un gradateur",
+	"Select a light": "Sélectionnez une lumière",
+	"Select the RODRET device": "Sélectionnez l'appareil Rodret",
+	"Select the brightness/dimmer": "Sélectionnez la luminosité / gradation",
+	"Select the light switch": "Sélectionnez l'interrupteur d'éclairage",
+	"Step (%)": "Étape (%)"
+}

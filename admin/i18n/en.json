@@ -1,0 +1,18 @@
+{
+	"RODRET settings": "Adapter settings for RODRET adapter",
+	"RODRET object": "RODRET object",
+	"Select the RODRET device": "Select the RODRET device",
+	"Select a device": "Select a device",
+	"Light settings": "Light settings",
+	"Light switch object": "Light switch object",
+	"Select the light switch": "Select the light switch",
+	"Select a light": "Select a light",
+	"Light brightness object": "Light brightness object",
+	"Select the brightness/dimmer": "Select the brightness/dimmer",
+	"Select a dimmer": "Select a dimmer",
+	"Dimmer settings": "Dimmer settings",
+	"Step (%)": "Step (%)",
+	"Brightness change per step when holding the dimmer button.": "Brightness change per step when holding the dimmer button.",
+	"Interval (ms)": "Interval (ms)",
+	"Milliseconds between each dimming step.": "Milliseconds between each dimming step."
+}

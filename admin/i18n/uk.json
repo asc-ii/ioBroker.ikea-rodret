@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "Зміна яскравості за крок при триманні кнопки тьмяності.",
+	"Dimmer settings": "Налаштування тьмяти",
+	"Interval (ms)": "Інтервал (MS)",
+	"Light brightness object": "Об'єкт яскравості світла",
+	"Light settings": "Налаштування світла",
+	"Light switch object": "Об'єкт вимикача світла",
+	"Milliseconds between each dimming step.": "Мілісекунди між кожним кроком затемнення.",
+	"RODRET object": "Об'єкт Rodret",
+	"RODRET settings": "Налаштування адаптера для адаптера Rodret",
+	"Select a device": "Виберіть пристрій",
+	"Select a dimmer": "Виберіть Діммер",
+	"Select a light": "Виберіть світло",
+	"Select the RODRET device": "Виберіть пристрій Rodret",
+	"Select the brightness/dimmer": "Виберіть яскравість/тьмяність",
+	"Select the light switch": "Виберіть перемикач світла",
+	"Step (%)": "Крок (%)"
+}

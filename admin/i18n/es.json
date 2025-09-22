@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "Cambio de brillo por paso Al presionar el botón Dimmer.",
+	"Dimmer settings": "Configuración de atenuador",
+	"Interval (ms)": "Intervalo (MS)",
+	"Light brightness object": "Objeto de brillo de luz",
+	"Light settings": "Configuración de luz",
+	"Light switch object": "Objeto de interruptor de luz",
+	"Milliseconds between each dimming step.": "Milisegundos entre cada paso de atenuación.",
+	"RODRET object": "Objeto de rodillo",
+	"RODRET settings": "Configuración del adaptador para el adaptador de RODRET",
+	"Select a device": "Seleccione un dispositivo",
+	"Select a dimmer": "Seleccione un atenuador",
+	"Select a light": "Seleccione una luz",
+	"Select the RODRET device": "Seleccione el dispositivo RODRET",
+	"Select the brightness/dimmer": "Seleccione el brillo/atenuador",
+	"Select the light switch": "Seleccione el interruptor de luz",
+	"Step (%)": "Paso (%)"
+}

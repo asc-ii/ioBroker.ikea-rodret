@@ -1,0 +1,18 @@
+{
+	"Brightness change per step when holding the dimmer button.": "持有调光按钮时的亮度每步变化。",
+	"Dimmer settings": "调光器设置",
+	"Interval (ms)": "间隔（MS）",
+	"Light brightness object": "亮点对象",
+	"Light settings": "灯光设置",
+	"Light switch object": "照明开关对象",
+	"Milliseconds between each dimming step.": "每个调光步骤之间的毫秒。",
+	"RODRET object": "Rodret对象",
+	"RODRET settings": "Rodret适配器的适配器设置",
+	"Select a device": "选择一个设备",
+	"Select a dimmer": "选择一个调光器",
+	"Select a light": "选择一个灯",
+	"Select the RODRET device": "选择Rodret设备",
+	"Select the brightness/dimmer": "选择亮度/调光器",
+	"Select the light switch": "选择电灯开关",
+	"Step (%)": "步 （％）"
+}
