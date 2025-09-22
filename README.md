@@ -2,14 +2,14 @@
 
 # ioBroker.ikea-rodret
 
-[![NPM version](https://img.shields.io/npm/v/iobroker.rodret.svg)](https://www.npmjs.com/package/iobroker.rodret)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.rodret.svg)](https://www.npmjs.com/package/iobroker.rodret)
-![Number of Installations](https://iobroker.live/badges/rodret-installed.svg)
-![Current version in stable repository](https://iobroker.live/badges/rodret-stable.svg)
+[![NPM version](https://img.shields.io/npm/v/iobroker.ikea-rodret.svg)](https://www.npmjs.com/package/iobroker.ikea-rodret)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.ikea-rodret.svg)](https://www.npmjs.com/package/iobroker.ikea-rodret)
+![Number of Installations](https://iobroker.live/badges/ikea-rodret-installed.svg)
+![Current version in stable repository](https://iobroker.live/badges/ikea-rodret-stable.svg)
 
-[![NPM](https://nodei.co/npm/iobroker.rodret.png?downloads=true)](https://nodei.co/npm/iobroker.rodret/)
+[![NPM](https://nodei.co/npm/iobroker.ikea-rodret.png?downloads=true)](https://nodei.co/npm/iobroker.ikea-rodret/)
 
-**Tests:** ![Test and Release](https://github.com/asc-ii/ioBroker.rodret/workflows/Test%20and%20Release/badge.svg)
+**Tests:** ![Test and Release](https://github.com/asc-ii/ioBroker.ikea-rodret/workflows/Test%20and%20Release/badge.svg)
 
 ## IKEA RODRET Dimmer (E2201) adapter for ioBroker
 
