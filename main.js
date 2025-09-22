@@ -6,6 +6,11 @@
 
 const utils = require('@iobroker/adapter-core');
 const ACTION_SUFFIX = 'action';
+const ACTION_ON = 'on';
+const ACTION_OFF = 'off';
+const ACTION_BRIGHTNESS_UP = 'brightness_move_up';
+const ACTION_BRIGHTNESS_DOWN = 'brightness_move_down';
+const ACTION_BRIGHTNESS_STOP = 'brightness_stop';
 
 class IkeaRodret extends utils.Adapter {
 	/**
@@ -110,7 +115,7 @@ class IkeaRodret extends utils.Adapter {
 	/**
 	 * Handles actions triggered by the RODRET device.
 	 * @param {string} action Any of the allowed RODRET action
-	 * states ("on", "off", "brightness_move_up", "brightness_move_down",
+	 * states ("onACTION_ON", "off", "brightness_move_up", "brightness_move_down",
 	 * "brightness_stop").
 	 */
 	async handleRodretAction(action) {
@@ -122,17 +127,17 @@ class IkeaRodret extends utils.Adapter {
 		}
 
 		switch (action) {
-			case 'on':
+			case ACTION_ON:
 				this.log.debug(`Switching light ${this.config.lightId} on`);
 				this.switchLight(true);
 				break;
 
-			case 'off':
+			case ACTION_OFF:
 				this.log.debug(`Switching light ${this.config.lightId} off`);
 				this.switchLight(false);
 				break;
 
-			case 'brightness_move_up':
+			case ACTION_BRIGHTNESS_UP:
 				this.log.debug('Brightening the light');
 				this.dimInterval = setInterval(
 					() => this.changeBrightness(this.config.dimStep),
@@ -140,12 +145,12 @@ class IkeaRodret extends utils.Adapter {
 				);
 				break;
 
-			case 'brightness_move_down':
+			case ACTION_BRIGHTNESS_DOWN:
 				this.log.debug('Dimming the light');
 				// dimInterval = setInterval(() => changeBrightness(-DIM_STEP), DIM_INTERVAL);
 				break;
 
-			case 'brightness_stop':
+			case ACTION_BRIGHTNESS_STOP:
 				// dimInterval = null;
 				break;
 		}
@@ -215,11 +220,11 @@ class IkeaRodret extends utils.Adapter {
 					name: 'Triggered action (e.g. a button click)',
 					type: 'string',
 					states: {
-						on: 'on',
-						off: 'off',
-						brightness_move_up: 'brightness_move_up',
-						brightness_move_down: 'brightness_move_down',
-						brightness_stop: 'brightness_stop',
+						on: ACTION_ON,
+						off: ACTION_OFF,
+						brightness_move_up: ACTION_BRIGHTNESS_UP,
+						brightness_move_down: ACTION_BRIGHTNESS_DOWN,
+						brightness_stop: ACTION_BRIGHTNESS_STOP,
 					},
 					read: true,
 					write: true,
