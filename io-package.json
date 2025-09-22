@@ -1,94 +1,107 @@
 {
-	"common": {
-		"name": "ikea-rodret",
-		"version": "0.0.1",
-		"news": {
-			"0.0.1": {
-				"en": "initial release",
-				"de": "Erstveröffentlichung",
-				"ru": "Начальная версия",
-				"pt": "lançamento inicial",
-				"nl": "Eerste uitgave",
-				"fr": "Première version",
-				"it": "Versione iniziale",
-				"es": "Versión inicial",
-				"pl": "Pierwsze wydanie",
-				"uk": "Початкова версія",
-				"zh-cn": "首次出版"
-			}
-		},
-		"titleLang": {
-			"en": "IKEA RODRET",
-			"de": "IKEA RODRET",
-			"ru": "IKEA RODRET",
-			"pt": "IKEA RODRET",
-			"nl": "IKEA RODRET",
-			"fr": "IKEA RODRET",
-			"it": "IKEA RODRET",
-			"es": "IKEA RODRET",
-			"pl": "IKEA RODRET",
-			"uk": "IKEA RODRET",
-			"zh-cn": "宜家罗德雷特"
-		},
-		"desc": {
-			"en": "IKEA RODRET Dimmer (E2201) for dimming or brightening a configured light.",
-			"de": "IKEA RODRET Dimmer (E2201) zum Dimmen oder Aufhellen eines konfigurierten Lichts.",
-			"ru": "IKEA RODRET Dimmer (E2201) для затемнения или осветления сконфигурированного света.",
-			"pt": "IKEA RODRET Dimmer (E2201) para diminuir ou iluminar uma luz configurada.",
-			"nl": "IKEA RODRET Dimmer (E2201) voor het dimmen of oplichten van een geconfigureerd licht.",
-			"fr": "IKEA RODRET Dimmer (E2201) pour réduire ou éclairer une lumière configurée.",
-			"it": "Dimmer IKEA RODRET (E2201) per la dimmerazione o l'illuminazione di una luce configurata.",
-			"es": "IKEA RODRET Dimmer (E2201) para atenuar o iluminar una luz configurada.",
-			"pl": "IKEA RODRET Dimmer (E2201) do przyciemniania lub rozjaśniania skonfigurowanego światła.",
-			"uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
-			"zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
-		},
-		"authors": [
-			"Adrian Schyja <adrian.schyja@gmail.com>"
-		],
-		"keywords": [
-			"dimmer",
-			"switch",
-			"ikea",
-			"rodret"
-		],
-		"licenseInformation": {
-			"type": "free",
-			"license": "MIT"
-		},
-		"platform": "Javascript/Node.js",
-		"icon": "ikea-rodret.png",
-		"enabled": true,
-		"extIcon": "https://raw.githubusercontent.com/asc-ii/ioBroker.ikea-rodret/main/admin/ikea-rodret.png",
-		"readme": "https://github.com/asc-ii/ioBroker.ikea-rodret/blob/main/README.md",
-		"loglevel": "info",
-		"tier": 3,
-		"mode": "daemon",
-		"type": "iot-systems",
-		"compact": true,
-		"connectionType": "local",
-		"dataSource": "push",
-		"adminUI": {
-			"config": "json"
-		},
-		"dependencies": [
-			{
-				"js-controller": ">=6.0.11"
-			}
-		],
-		"globalDependencies": [
-			{
-				"admin": ">=7.0.23"
-			}
-		]
-	},
-	"native": {
-		"rodretId": null,
-		"lightId": null,
-		"brightnessId": null,
-		"dimStep": 5,
-		"dimInterval": 200
-	},
-	"objects": [],
-	"instanceObjects": []
+  "common": {
+    "name": "ikea-rodret",
+    "version": "0.0.2",
+    "news": {
+      "0.0.2": {
+        "en": "fix translations",
+        "de": "übersetzungen anpassen",
+        "ru": "исправление переводов",
+        "pt": "corrigir traduções",
+        "nl": "vertalingen herstellen",
+        "fr": "corriger les traductions",
+        "it": "correggere le traduzioni",
+        "es": "arreglar traducciones",
+        "pl": "poprawianie tłumaczeń",
+        "uk": "фіксувати переклади",
+        "zh-cn": "固定翻译"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Початкова версія",
+        "zh-cn": "首次出版"
+      }
+    },
+    "titleLang": {
+      "en": "IKEA RODRET",
+      "de": "IKEA RODRET",
+      "ru": "IKEA RODRET",
+      "pt": "IKEA RODRET",
+      "nl": "IKEA RODRET",
+      "fr": "IKEA RODRET",
+      "it": "IKEA RODRET",
+      "es": "IKEA RODRET",
+      "pl": "IKEA RODRET",
+      "uk": "IKEA RODRET",
+      "zh-cn": "宜家罗德雷特"
+    },
+    "desc": {
+      "en": "IKEA RODRET Dimmer (E2201) for dimming or brightening a configured light.",
+      "de": "IKEA RODRET Dimmer (E2201) zum Dimmen oder Aufhellen eines konfigurierten Lichts.",
+      "ru": "IKEA RODRET Dimmer (E2201) для затемнения или осветления сконфигурированного света.",
+      "pt": "IKEA RODRET Dimmer (E2201) para diminuir ou iluminar uma luz configurada.",
+      "nl": "IKEA RODRET Dimmer (E2201) voor het dimmen of oplichten van een geconfigureerd licht.",
+      "fr": "IKEA RODRET Dimmer (E2201) pour réduire ou éclairer une lumière configurée.",
+      "it": "Dimmer IKEA RODRET (E2201) per la dimmerazione o l'illuminazione di una luce configurata.",
+      "es": "IKEA RODRET Dimmer (E2201) para atenuar o iluminar una luz configurada.",
+      "pl": "IKEA RODRET Dimmer (E2201) do przyciemniania lub rozjaśniania skonfigurowanego światła.",
+      "uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
+      "zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
+    },
+    "authors": [
+      "Adrian Schyja <adrian.schyja@gmail.com>"
+    ],
+    "keywords": [
+      "dimmer",
+      "switch",
+      "ikea",
+      "rodret"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "ikea-rodret.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/asc-ii/ioBroker.ikea-rodret/main/admin/ikea-rodret.png",
+    "readme": "https://github.com/asc-ii/ioBroker.ikea-rodret/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "mode": "daemon",
+    "type": "iot-systems",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.0.23"
+      }
+    ]
+  },
+  "native": {
+    "rodretId": null,
+    "lightId": null,
+    "brightnessId": null,
+    "dimStep": 5,
+    "dimInterval": 200
+  },
+  "objects": [],
+  "instanceObjects": []
 }
