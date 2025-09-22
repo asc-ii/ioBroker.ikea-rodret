@@ -29,7 +29,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 
 ### **WORK IN PROGRESS**
 
-- (Adrian Schyja) initial release
+- (asc-ii) initial release
 
 ## License
 
