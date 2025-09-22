@@ -26,6 +26,11 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+- (asc-ii) remove debug function
+
 ### 0.0.2 (2025-09-22)
 
 - (asc-ii) fix translations

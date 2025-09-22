@@ -33,8 +33,6 @@ class IkeaRodret extends utils.Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
-		await this.createDebugDataPoints();
-
 		if (!this.config.rodretId) {
 			this.log.error(`Device not configured - please check instance configuration of ${this.namespace}`);
 			return;
@@ -196,85 +194,6 @@ class IkeaRodret extends utils.Adapter {
 
 		const isOn = newBrightness > 1;
 		await this.switchLight(isOn);
-	}
-
-	async createDebugDataPoints() {
-		await this.setForeignObjectNotExistsAsync('zigbee', {
-			type: 'folder',
-			common: {
-				name: 'zigbee',
-				role: 'folder',
-			},
-			native: {},
-		});
-
-		const adapter = this;
-
-		async function createDevice(rootId) {
-			await adapter.setForeignObjectNotExistsAsync('zigbee.' + rootId, {
-				type: 'device',
-				common: {
-					name: 'RODRET Switch',
-					role: 'device',
-				},
-				native: {},
-			});
-			await adapter.setForeignObjectNotExistsAsync('zigbee.' + rootId + '.action', {
-				type: 'state',
-				common: {
-					name: 'Triggered action (e.g. a button click)',
-					type: 'string',
-					states: {
-						on: ACTION_ON,
-						off: ACTION_OFF,
-						brightness_move_up: ACTION_BRIGHTNESS_UP,
-						brightness_move_down: ACTION_BRIGHTNESS_DOWN,
-						brightness_stop: ACTION_BRIGHTNESS_STOP,
-					},
-					read: true,
-					write: true,
-					role: 'state',
-				},
-				native: {},
-			});
-		}
-
-		await createDevice('e406bffffe3651e5_1');
-		await createDevice('e406bffffe3651e5_2');
-		await createDevice('e406bffffe3651e5_3');
-
-		await this.setForeignObjectNotExistsAsync('zigbee.light_1', {
-			type: 'device',
-			common: {
-				name: 'Light 1',
-				role: 'device',
-			},
-			native: {},
-		});
-		await this.setForeignObjectNotExistsAsync('zigbee.light_1.switch', {
-			type: 'state',
-			common: {
-				name: 'switch',
-				type: 'boolean',
-				read: true,
-				write: true,
-				role: 'switch',
-			},
-			native: {},
-		});
-		await this.setForeignObjectNotExistsAsync('zigbee.light_1.brightness', {
-			type: 'state',
-			common: {
-				name: 'Brightness',
-				type: 'number',
-				read: true,
-				write: true,
-				role: 'level.dimmer',
-				min: 0,
-				max: 100,
-			},
-			native: {},
-		});
 	}
 }
 
