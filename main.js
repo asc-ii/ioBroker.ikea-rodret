@@ -33,8 +33,6 @@ class IkeaRodret extends utils.Adapter {
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
-		this.log.debug('onReady');
-
 		await this.createDebugDataPoints();
 
 		if (!this.config.rodretId) {
@@ -68,10 +66,7 @@ class IkeaRodret extends utils.Adapter {
 	onUnload(callback) {
 		this.log.debug('Unloading adapter...');
 		try {
-			if (this.dimInterval !== null) {
-				clearInterval(this.dimInterval);
-				this.dimInterval = null;
-			}
+			this.clearDimInterval();
 
 			callback();
 		} catch (_e) {
@@ -121,10 +116,7 @@ class IkeaRodret extends utils.Adapter {
 	async handleRodretAction(action) {
 		this.log.debug(`Handling RODRET action: ${action}`);
 
-		if (this.dimInterval !== null) {
-			clearInterval(this.dimInterval);
-			this.dimInterval = null;
-		}
+		this.clearDimInterval();
 
 		switch (action) {
 			case ACTION_ON:
@@ -147,12 +139,25 @@ class IkeaRodret extends utils.Adapter {
 
 			case ACTION_BRIGHTNESS_DOWN:
 				this.log.debug('Dimming the light');
-				// dimInterval = setInterval(() => changeBrightness(-DIM_STEP), DIM_INTERVAL);
+				this.dimInterval = setInterval(
+					() => this.changeBrightness(-this.config.dimStep),
+					this.config.dimInterval,
+				);
 				break;
 
 			case ACTION_BRIGHTNESS_STOP:
-				// dimInterval = null;
+				this.clearDimInterval();
 				break;
+		}
+	}
+
+	/**
+	 * Clears the dimmer interval if it exists.
+	 */
+	clearDimInterval() {
+		if (this.dimInterval !== null) {
+			clearInterval(this.dimInterval);
+			this.dimInterval = null;
 		}
 	}
 
