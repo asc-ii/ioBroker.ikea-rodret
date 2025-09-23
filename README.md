@@ -31,6 +31,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 
 - (asc-ii): feat: add verbose logging option
 - (asc-ii): fix: ignoring empty light state
+- (asc-ii) update admin layout
 
 ### 0.0.3 (2025-09-23)
 
