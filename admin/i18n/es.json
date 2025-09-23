@@ -2,6 +2,7 @@
 	"Brightness change per step when holding the dimmer button.": "Cambio de brillo por paso Al presionar el botón Dimmer.",
 	"Brightness/Dimmer is missing": "Falta el brillo/atenuador",
 	"Dimmer settings": "Configuración de atenuador",
+	"Enable more detailed logging for debugging purposes.": "Habilite el registro más detallado para fines de depuración.",
 	"Interval (ms)": "Intervalo (MS)",
 	"Light brightness": "Brillo de luz",
 	"Light settings": "Configuración de luz",
@@ -14,5 +15,6 @@
 	"Select the RODRET device": "Seleccione el dispositivo RODRET",
 	"Select the brightness state": "Seleccione el estado de brillo",
 	"Select the light switch state": "Seleccione el estado del interruptor de luz",
-	"Step (%)": "Paso (%)"
+	"Step (%)": "Paso (%)",
+	"Verbose logging": "Registro detallado"
 }

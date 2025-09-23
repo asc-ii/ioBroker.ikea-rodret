@@ -25,6 +25,16 @@
 			"lg": 4,
 			"xl": 4
 		},
+		"verbose": {
+			"type": "checkbox",
+			"label": "Verbose logging",
+			"help": "Enable more detailed logging for debugging purposes.",
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 4,
+			"xl": 4
+		},
 		"_headerLightSettings": {
 			"newLine": true,
 			"type": "header",

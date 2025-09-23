@@ -2,6 +2,7 @@
 	"Brightness change per step when holding the dimmer button.": "Zmiana jasności na krok podczas trzymania przycisku ściemniacza.",
 	"Brightness/Dimmer is missing": "Brakuje jasności/ściemniacza",
 	"Dimmer settings": "Ustawienia ściemniacza",
+	"Enable more detailed logging for debugging purposes.": "Włącz bardziej szczegółowe rejestrowanie do celów debugowania.",
 	"Interval (ms)": "Interwał (MS)",
 	"Light brightness": "Lekka jasność",
 	"Light settings": "Ustawienia światła",
@@ -14,5 +15,6 @@
 	"Select the RODRET device": "Wybierz urządzenie Rodret",
 	"Select the brightness state": "Wybierz stan jasności",
 	"Select the light switch state": "Wybierz stan przełącznika światła",
-	"Step (%)": "Krok (%)"
+	"Step (%)": "Krok (%)",
+	"Verbose logging": "Logowanie wetonowe"
 }

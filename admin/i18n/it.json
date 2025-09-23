@@ -2,6 +2,7 @@
 	"Brightness change per step when holding the dimmer button.": "La luminosità cambia per passaggio quando si tiene il pulsante Dimmer.",
 	"Brightness/Dimmer is missing": "Manca la luminosità/dimmer",
 	"Dimmer settings": "Impostazioni dimmer",
+	"Enable more detailed logging for debugging purposes.": "Abilita registrazione più dettagliata per scopi di debug.",
 	"Interval (ms)": "Intervallo (MS)",
 	"Light brightness": "Luminosità leggera",
 	"Light settings": "Impostazioni di luce",
@@ -14,5 +15,6 @@
 	"Select the RODRET device": "Seleziona il dispositivo Roddret",
 	"Select the brightness state": "Seleziona lo stato di luminosità",
 	"Select the light switch state": "Seleziona lo stato dell'interruttore della luce",
-	"Step (%)": "Fare un passo (%)"
+	"Step (%)": "Fare un passo (%)",
+	"Verbose logging": "Registrazione verbosa"
 }

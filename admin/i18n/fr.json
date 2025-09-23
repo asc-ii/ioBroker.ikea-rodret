@@ -2,6 +2,7 @@
 	"Brightness change per step when holding the dimmer button.": "Changement de luminosité par étape lors de la maintenance du bouton de gradation.",
 	"Brightness/Dimmer is missing": "La luminosité / le gradateur manque",
 	"Dimmer settings": "Gradateur",
+	"Enable more detailed logging for debugging purposes.": "Activer la journalisation plus détaillée à des fins de débogage.",
 	"Interval (ms)": "Intervalle (MS)",
 	"Light brightness": "Luminosité légère",
 	"Light settings": "Paramètres légers",
@@ -14,5 +15,6 @@
 	"Select the RODRET device": "Sélectionnez l'appareil Rodret",
 	"Select the brightness state": "Sélectionnez l'état de luminosité",
 	"Select the light switch state": "Sélectionnez l'état de l'interrupteur d'éclairage",
-	"Step (%)": "Étape (%)"
+	"Step (%)": "Étape (%)",
+	"Verbose logging": "Journalisation verbeuse"
 }

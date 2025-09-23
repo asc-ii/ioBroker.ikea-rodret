@@ -2,6 +2,7 @@
 	"Brightness change per step when holding the dimmer button.": "Яркость изменяется за шаг при удержании кнопки диммера.",
 	"Brightness/Dimmer is missing": "Яркость/диммер отсутствует",
 	"Dimmer settings": "Настройки диммера",
+	"Enable more detailed logging for debugging purposes.": "Включить более подробные журналы для отладки.",
 	"Interval (ms)": "Интервал (MS)",
 	"Light brightness": "Светлая яркость",
 	"Light settings": "Световые настройки",
@@ -14,5 +15,6 @@
 	"Select the RODRET device": "Выберите устройство Rodret",
 	"Select the brightness state": "Выберите состояние яркости",
 	"Select the light switch state": "Выберите состояние выключателя света",
-	"Step (%)": "Шаг (%)"
+	"Step (%)": "Шаг (%)",
+	"Verbose logging": "Логовая регистрация"
 }

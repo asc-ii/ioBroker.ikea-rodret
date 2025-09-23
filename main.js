@@ -62,7 +62,7 @@ class IkeaRodret extends utils.Adapter {
 	 * @param {() => void} callback
 	 */
 	onUnload(callback) {
-		this.log.debug('Unloading adapter...');
+		this.logit('Unloading adapter...');
 		try {
 			this.clearDimInterval();
 
@@ -80,10 +80,10 @@ class IkeaRodret extends utils.Adapter {
 	onObjectChange(id, obj) {
 		if (obj) {
 			// The object was changed
-			this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+			this.logit(`object ${id} changed: ${JSON.stringify(obj)}`);
 		} else {
 			// The object was deleted
-			this.log.debug(`object ${id} deleted`);
+			this.logit(`object ${id} deleted`);
 		}
 	}
 
@@ -95,13 +95,13 @@ class IkeaRodret extends utils.Adapter {
 	async onStateChange(id, state) {
 		if (state) {
 			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			this.logit(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 			if (id === this.rodretAction()) {
 				await this.handleRodretAction(String(state.val));
 			}
 		} else {
 			// The state was deleted
-			this.log.debug(`state ${id} deleted`);
+			this.logit(`state ${id} deleted`);
 		}
 	}
 
@@ -112,23 +112,23 @@ class IkeaRodret extends utils.Adapter {
 	 * "brightness_stop").
 	 */
 	async handleRodretAction(action) {
-		this.log.info(`Handling RODRET action: ${action}`);
+		this.logit(`Handling RODRET action: ${action}`);
 
 		this.clearDimInterval();
 
 		switch (action) {
 			case ACTION_ON:
-				this.log.debug(`Switching light ${this.config.lightId} on`);
+				this.logit(`Switching light ${this.config.lightId} on`);
 				this.switchLight(true);
 				break;
 
 			case ACTION_OFF:
-				this.log.debug(`Switching light ${this.config.lightId} off`);
+				this.logit(`Switching light ${this.config.lightId} off`);
 				this.switchLight(false);
 				break;
 
 			case ACTION_BRIGHTNESS_UP:
-				this.log.debug('Brightening the light');
+				this.logit('Brightening the light');
 				this.dimInterval = setInterval(
 					() => this.changeBrightness(this.config.dimStep),
 					this.config.dimInterval,
@@ -136,7 +136,7 @@ class IkeaRodret extends utils.Adapter {
 				break;
 
 			case ACTION_BRIGHTNESS_DOWN:
-				this.log.debug('Dimming the light');
+				this.logit('Dimming the light');
 				this.dimInterval = setInterval(
 					() => this.changeBrightness(-this.config.dimStep),
 					this.config.dimInterval,
@@ -198,6 +198,11 @@ class IkeaRodret extends utils.Adapter {
 
 		const isOn = newBrightness > 1;
 		await this.switchLight(isOn);
+	}
+
+	logit(msg) {
+		if (this.config.verbose) this.log.info(msg);
+		else this.log.debug(msg);
 	}
 }
 
