@@ -48,12 +48,12 @@ class IkeaRodret extends utils.Adapter {
 			return;
 		}
 
-		this.log.debug('RODRET device id: ' + this.config.rodretId);
-		this.log.debug('RODRET light id: ' + this.config.lightId);
-		this.log.debug('RODRET brightness id: ' + this.config.brightnessId);
+		this.log.info('RODRET device id: ' + this.config.rodretId);
+		this.log.info('RODRET light id: ' + this.config.lightId);
+		this.log.info('RODRET brightness id: ' + this.config.brightnessId);
 
 		// subscribe to button action event
-		this.log.debug(`Subscribing to ${this.rodretAction()}`);
+		this.log.info(`Subscribing to ${this.rodretAction()}`);
 		await this.subscribeForeignStatesAsync(this.rodretAction());
 	}
 
@@ -80,7 +80,7 @@ class IkeaRodret extends utils.Adapter {
 	onObjectChange(id, obj) {
 		if (obj) {
 			// The object was changed
-			this.log.debug(`object ${id} changed: ${JSON.stringify(obj)}`);
+			this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
 		} else {
 			// The object was deleted
 			this.log.debug(`object ${id} deleted`);
@@ -95,8 +95,8 @@ class IkeaRodret extends utils.Adapter {
 	async onStateChange(id, state) {
 		if (state) {
 			// The state was changed
-			this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			if (id === this.rodretAction() && state.ack === false) {
+			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			if (id === this.rodretAction()) {
 				await this.handleRodretAction(String(state.val));
 			}
 		} else {
