@@ -29,6 +29,7 @@
 			"type": "checkbox",
 			"label": "Verbose logging",
 			"help": "Enable more detailed logging for debugging purposes.",
+			"newLine": true,
 			"xs": 12,
 			"sm": 12,
 			"md": 6,

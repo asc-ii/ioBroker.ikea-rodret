@@ -96,7 +96,7 @@ class IkeaRodret extends utils.Adapter {
 		if (state) {
 			// The state was changed
 			this.logit(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			if (state.val && id === this.rodretAction()) {
+			if (this.isNonEmptyString(state?.val) && id === this.rodretAction()) {
 				await this.handleRodretAction(String(state.val));
 			}
 		} else {
@@ -112,6 +112,10 @@ class IkeaRodret extends utils.Adapter {
 	 * "brightness_stop").
 	 */
 	async handleRodretAction(action) {
+		if (this.isNonEmptyString(action) === false) {
+			this.log.warn('Ignoring empty action from RODRET device');
+			return;
+		}
 		this.logit(`Handling RODRET action: ${action}`);
 
 		this.clearDimInterval();
@@ -203,6 +207,17 @@ class IkeaRodret extends utils.Adapter {
 	logit(msg) {
 		if (this.config.verbose) this.log.info(msg);
 		else this.log.debug(msg);
+	}
+
+	/**
+	 * Returns true if the input is a string with at least one
+	 * non-whitespace character.
+	 *
+	 * @param {*} value - Any value to check.
+	 * @returns {boolean}
+	 */
+	isNonEmptyString(value) {
+		return typeof value === 'string' && value.trim().length > 0;
 	}
 }
 
