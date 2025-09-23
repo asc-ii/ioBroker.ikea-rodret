@@ -96,7 +96,7 @@ class IkeaRodret extends utils.Adapter {
 		if (state) {
 			// The state was changed
 			this.logit(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			if (id === this.rodretAction()) {
+			if (state.val && id === this.rodretAction()) {
 				await this.handleRodretAction(String(state.val));
 			}
 		} else {
