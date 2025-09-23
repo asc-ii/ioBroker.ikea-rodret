@@ -30,6 +30,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 ### **WORK IN PROGRESS**
 
 - (asc-ii) remove debug function
+- (asc-ii) add status logs
 
 ### 0.0.2 (2025-09-22)
 

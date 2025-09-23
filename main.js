@@ -112,7 +112,7 @@ class IkeaRodret extends utils.Adapter {
 	 * "brightness_stop").
 	 */
 	async handleRodretAction(action) {
-		this.log.debug(`Handling RODRET action: ${action}`);
+		this.log.info(`Handling RODRET action: ${action}`);
 
 		this.clearDimInterval();
 
@@ -145,6 +145,10 @@ class IkeaRodret extends utils.Adapter {
 
 			case ACTION_BRIGHTNESS_STOP:
 				this.clearDimInterval();
+				break;
+
+			default:
+				this.log.warn(`Unknown action received from RODRET: ${action}`);
 				break;
 		}
 	}
