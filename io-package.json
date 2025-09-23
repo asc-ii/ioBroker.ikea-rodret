@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ikea-rodret",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "news": {
+      "0.0.3": {
+        "en": "remove debug function\nadd status logs",
+        "de": "debug-funktion entfernen\nstatusprotokolle hinzufügen",
+        "ru": "удалить функцию debug\nдобавить журналы состояния",
+        "pt": "remover a função de depuração\nadicionar registros de status",
+        "nl": "debugfunctie verwijderen\nstatuslogs toevoegen",
+        "fr": "supprimer la fonction debug\najouter des journaux d'état",
+        "it": "rimuovere la funzione di debug\naggiungere log di stato",
+        "es": "eliminar la función de depuración\nagregar registros de estado",
+        "pl": "usuń funkcję debugowania\ndodaj dzienniki stanu",
+        "uk": "видалити функцію видалення\nдодати журнали стану",
+        "zh-cn": "删除调试函数\n添加状态日志"
+      },
       "0.0.2": {
         "en": "fix translations",
         "de": "übersetzungen anpassen",
