@@ -179,7 +179,7 @@ class IkeaRodret extends utils.Adapter {
 			return;
 		}
 		// switch the light on or off
-		await this.setForeignStateAsync(this.config.lightId, { val: onOrOff, ack: true });
+		await this.setForeignStateAsync(this.config.lightId, { val: onOrOff });
 	}
 
 	/**
@@ -194,7 +194,7 @@ class IkeaRodret extends utils.Adapter {
 		}
 
 		const newBrightness = Math.max(0, Math.min(100, Number(current.val) + delta));
-		await this.setForeignStateAsync(String(this.config.brightnessId), { val: newBrightness, ack: true });
+		await this.setForeignStateAsync(String(this.config.brightnessId), { val: newBrightness });
 
 		const isOn = newBrightness > 1;
 		await this.switchLight(isOn);
