@@ -5,12 +5,111 @@
  */
 
 const utils = require('@iobroker/adapter-core');
+
 const ACTION_SUFFIX = 'action';
 const ACTION_ON = 'on';
 const ACTION_OFF = 'off';
 const ACTION_BRIGHTNESS_UP = 'brightness_move_up';
 const ACTION_BRIGHTNESS_DOWN = 'brightness_move_down';
 const ACTION_BRIGHTNESS_STOP = 'brightness_stop';
+
+class RodretDevice {
+	/**
+	 * @param {object} adapter - Instanz des Adapters
+	 * @param {object} config - Konfiguration für dieses Gerät
+	 */
+	constructor(adapter, config) {
+		this.adapter = adapter;
+		this.config = config;
+		this.dimInterval = null;
+	}
+
+	get rodretActionId() {
+		return `${this.config.rodretId}.${ACTION_SUFFIX}`;
+	}
+
+	async subscribe() {
+		await this.adapter.subscribeForeignStatesAsync(this.rodretActionId);
+		this.adapter.log.info(`Subscribed to ${this.rodretActionId}`);
+	}
+
+	async handleAction(action) {
+		if (!this.isNonEmptyString(action)) {
+			this.adapter.log.warn('Ignoring empty action from RODRET device');
+			return;
+		}
+
+		this.adapter.log.debug(`Handling action ${action} for device ${this.config.rodretId}`);
+		this.clearDimInterval();
+
+		switch (action) {
+			case ACTION_ON:
+				await this.switchLight(true);
+				break;
+
+			case ACTION_OFF:
+				await this.switchLight(false);
+				break;
+
+			case ACTION_BRIGHTNESS_UP:
+				this.dimInterval = setInterval(
+					() => this.changeBrightness(this.config.dimStep),
+					this.config.dimInterval,
+				);
+				break;
+
+			case ACTION_BRIGHTNESS_DOWN:
+				this.dimInterval = setInterval(
+					() => this.changeBrightness(-this.config.dimStep),
+					this.config.dimInterval,
+				);
+				break;
+
+			case ACTION_BRIGHTNESS_STOP:
+				this.clearDimInterval();
+				break;
+
+			default:
+				this.adapter.log.warn(`Unknown action received from RODRET: ${action}`);
+				break;
+		}
+	}
+
+	clearDimInterval() {
+		if (this.dimInterval !== null) {
+			clearInterval(this.dimInterval);
+			this.dimInterval = null;
+		}
+	}
+
+	async switchLight(onOrOff) {
+		if (!this.config.lightId) {
+			this.adapter.log.error('Light not configured - please check instance configuration');
+			return;
+		}
+		await this.adapter.setForeignStateAsync(this.config.lightId, { val: onOrOff });
+	}
+
+	async changeBrightness(delta) {
+		const current = await this.adapter.getForeignStateAsync(String(this.config.brightnessId));
+		if (!current || current.val === null) {
+			this.adapter.log.error(
+				`Cannot change brightness - state ${this.config.brightnessId} not found or has no value`,
+			);
+			return;
+		}
+
+		const newBrightness = Math.max(0, Math.min(100, Number(current.val) + delta));
+		await this.adapter.setForeignStateAsync(String(this.config.brightnessId), { val: newBrightness });
+
+		const isOn = newBrightness > 1;
+		await this.switchLight(isOn);
+	}
+
+	isNonEmptyString(value) {
+		return typeof value === 'string' && value.trim().length > 0;
+	}
+}
 
 class IkeaRodret extends utils.Adapter {
 	/**
@@ -26,35 +125,56 @@ class IkeaRodret extends utils.Adapter {
 		this.on('objectChange', this.onObjectChange.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 
-		this.dimInterval = null;
+		/** @type {RodretDevice[]} */
+		this.devices = [];
 	}
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
-		if (!this.config.rodretId) {
-			this.log.error(`Device not configured - please check instance configuration of ${this.namespace}`);
+		if (!Array.isArray(this.config.rodretDevices) || this.config.rodretDevices.length === 0) {
+			this.log.error(`No devices configured - please check instance configuration of ${this.namespace}`);
 			return;
 		}
-		if (!this.config.lightId) {
-			this.log.error(`Light not configured - please check instance configuration of ${this.namespace}`);
-			return;
-		}
-		if (!this.config.brightnessId) {
-			this.log.error(
-				`Brightness/Dimmer not configured - please check instance configuration of ${this.namespace}`,
+
+		for (const devConf of this.config.rodretDevices) {
+			if (!devConf.rodretId || !devConf.lightId || !devConf.brightnessId) {
+				this.log.warn(`Skipping invalid device configuration: ${JSON.stringify(devConf)}`);
+				continue;
+			}
+
+			const device = new RodretDevice(this, devConf);
+			this.devices.push(device);
+			// await device.subscribe();
+
+			this.log.info(
+				`Configured device: rodret=${devConf.rodretId}, light=${devConf.lightId}, brightness=${devConf.brightnessId}`,
 			);
-			return;
 		}
 
-		this.log.info('RODRET device id: ' + this.config.rodretId);
-		this.log.info('RODRET light id: ' + this.config.lightId);
-		this.log.info('RODRET brightness id: ' + this.config.brightnessId);
+		// if (!this.config.rodretId) {
+		// 	this.log.error(`Device not configured - please check instance configuration of ${this.namespace}`);
+		// 	return;
+		// }
+		// if (!this.config.lightId) {
+		// 	this.log.error(`Light not configured - please check instance configuration of ${this.namespace}`);
+		// 	return;
+		// }
+		// if (!this.config.brightnessId) {
+		// 	this.log.error(
+		// 		`Brightness/Dimmer not configured - please check instance configuration of ${this.namespace}`,
+		// 	);
+		// 	return;
+		// }
 
-		// subscribe to button action event
-		this.log.info(`Subscribing to ${this.rodretAction()}`);
-		await this.subscribeForeignStatesAsync(this.rodretAction());
+		// this.log.info('RODRET device id: ' + this.config.rodretId);
+		// this.log.info('RODRET light id: ' + this.config.lightId);
+		// this.log.info('RODRET brightness id: ' + this.config.brightnessId);
+
+		// // subscribe to button action event
+		// this.log.info(`Subscribing to ${this.rodretAction()}`);
+		// await this.subscribeForeignStatesAsync(this.rodretAction());
 	}
 
 	/**
@@ -64,7 +184,9 @@ class IkeaRodret extends utils.Adapter {
 	onUnload(callback) {
 		this.logit('Unloading adapter...');
 		try {
-			this.clearDimInterval();
+			for (const dev of this.devices) {
+				dev.clearDimInterval();
+			}
 
 			callback();
 		} catch (_e) {
@@ -93,15 +215,18 @@ class IkeaRodret extends utils.Adapter {
 	 * @param {ioBroker.State | null | undefined} state
 	 */
 	async onStateChange(id, state) {
-		if (state) {
-			// The state was changed
-			this.logit(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			if (this.isNonEmptyString(state?.val) && id === this.rodretAction()) {
-				await this.handleRodretAction(String(state.val));
+		if (!state) {
+			this.log.debug(`state ${id} deleted`);
+			return;
+		}
+
+		this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+		if (!state.ack && typeof state.val === 'string') {
+			// passende Device-Instanz suchen
+			const device = this.devices.find((d) => id === d.rodretActionId);
+			if (device) {
+				await device.handleAction(state.val);
 			}
-		} else {
-			// The state was deleted
-			this.logit(`state ${id} deleted`);
 		}
 	}
 
