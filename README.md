@@ -27,14 +27,20 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 	### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+
+- (asc-ii) fix logging
+- (asc-ii) fix translations
+- (asc-ii) update adapter image
+
 ### 0.0.5 (2025-10-02)
 
-- (asc-ii): feat: supporting multiple devices per adapter
+- (asc-ii) feat: supporting multiple devices per adapter
 
 ### 0.0.4 (2025-09-23)
 
-- (asc-ii): feat: add verbose logging option
-- (asc-ii): fix: ignoring empty light state
+- (asc-ii) feat: add verbose logging option
+- (asc-ii) fix: ignoring empty light state
 - (asc-ii) update admin layout
 
 ### 0.0.3 (2025-09-23)
