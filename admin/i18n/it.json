@@ -1,9 +1,11 @@
 {
+	"Brightness": "Luminosità",
 	"Brightness change per step when holding the dimmer button.": "La luminosità cambia per passaggio quando si tiene il pulsante Dimmer.",
 	"Brightness/Dimmer is missing": "Manca la luminosità/dimmer",
 	"Dimmer settings": "Impostazioni dimmer",
 	"Enable more detailed logging for debugging purposes.": "Abilita registrazione più dettagliata per scopi di debug.",
 	"Interval (ms)": "Intervallo (MS)",
+	"Light": "Leggero",
 	"Light brightness": "Luminosità leggera",
 	"Light settings": "Impostazioni di luce",
 	"Light switch": "Interruttore della luce",

@@ -1,9 +1,11 @@
 {
+	"Brightness": "Яскравість",
 	"Brightness change per step when holding the dimmer button.": "Зміна яскравості за крок при триманні кнопки тьмяності.",
 	"Brightness/Dimmer is missing": "Яскравість/тьмяність відсутня",
 	"Dimmer settings": "Налаштування тьмяти",
 	"Enable more detailed logging for debugging purposes.": "Увімкнути більш детальну журнал для налагодження.",
 	"Interval (ms)": "Інтервал (MS)",
+	"Light": "Світлий",
 	"Light brightness": "Світла яскравість",
 	"Light settings": "Налаштування світла",
 	"Light switch": "Перемикач світла",
