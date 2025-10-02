@@ -80,6 +80,8 @@ class IkeaRodret extends utils.Adapter {
 		} else {
 			// The object was deleted
 			this._logverbose(`object ${id} deleted`);
+
+			this.subscribeForeignStatesAsync;
 		}
 	}
 
@@ -94,9 +96,13 @@ class IkeaRodret extends utils.Adapter {
 			return;
 		}
 
+		if (!state.val) {
+			return;
+		}
+
 		this._logverbose(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-		if (!state.ack && typeof state.val === 'string') {
+		if (typeof state.val === 'string') {
 			// find according devuce instance
 			const device = this.devices.find((d) => id === d.rodretActionId);
 			if (device) {
