@@ -45,7 +45,7 @@ class RodretDevice {
 			return;
 		}
 
-		this.adapter.log.debug(`${this.name}: Handling action ${action} for device ${this.config.rodretId}`);
+		this._logverbose(`${this.name}: Handling action ${action} for device ${this.config.rodretId}`);
 		this._clearDimInterval();
 
 		switch (action) {
@@ -132,6 +132,11 @@ class RodretDevice {
 	 */
 	_isNonEmptyString(value) {
 		return typeof value === 'string' && value.trim().length > 0;
+	}
+
+	_logverbose(msg) {
+		if (this.config.verbose) this.log.info(msg);
+		else this.log.debug(msg);
 	}
 }
 
