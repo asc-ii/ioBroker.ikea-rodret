@@ -9,7 +9,7 @@ class RodretDevice {
 	/**
 	 * @param {String} name - Name of the rodret device
 	 * @param {IkeaRodret} adapter - Reference to the adapter
-	 * @param {ioBroker.AdapterConfig} config - Adapter configueration
+	 * @param {object} config - RODRET device configueration
 	 */
 	constructor(name, adapter, config) {
 		this.name = name;
@@ -135,7 +135,7 @@ class RodretDevice {
 	}
 
 	_logverbose(msg) {
-		if (this.config.verbose) this.log.info(msg);
+		if (this.adapter.config.verbose) this.log.info(msg);
 		else this.log.debug(msg);
 	}
 }
