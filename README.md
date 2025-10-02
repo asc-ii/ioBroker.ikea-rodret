@@ -26,8 +26,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.0.5 (2025-10-02)
 
 - (asc-ii): feat: supporting multiple devices per adapter
 
