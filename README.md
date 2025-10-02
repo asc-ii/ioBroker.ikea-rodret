@@ -26,6 +26,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
 ### 0.0.5 (2025-10-02)
 
 - (asc-ii): feat: supporting multiple devices per adapter
@@ -53,7 +54,7 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 
 MIT License
 
-Copyright (c) 2025 Adrian Schyja <adrian.schyja@gmail.com>
+Copyright (c) 2025 Adrian Schyja <asc-ii@gmx.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
