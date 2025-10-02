@@ -1,9 +1,11 @@
 {
+	"Brightness": "Helligkeit",
 	"Brightness change per step when holding the dimmer button.": "Helligkeit ändert sich pro Schritt, wenn die Dimmer-Taste gedrückt wird.",
 	"Brightness/Dimmer is missing": "Helligkeit/Dimmer fehlt",
 	"Dimmer settings": "Dimmereinstellungen",
 	"Enable more detailed logging for debugging purposes.": "Aktivieren Sie eine detailliertere Protokollierung für Debugging -Zwecke.",
 	"Interval (ms)": "Intervall (MS)",
+	"Light": "Licht",
 	"Light brightness": "Helligkeit Licht",
 	"Light settings": "Lichteinstellungen",
 	"Light switch": "Lichtschalter",

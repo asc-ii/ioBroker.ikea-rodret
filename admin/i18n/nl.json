@@ -1,9 +1,11 @@
 {
+	"Brightness": "Helderheid",
 	"Brightness change per step when holding the dimmer button.": "De helderheid verandert per stap bij het vasthouden van de dimmer -knop.",
 	"Brightness/Dimmer is missing": "Helderheid/dimmer ontbreekt",
 	"Dimmer settings": "Dimmer -instellingen",
 	"Enable more detailed logging for debugging purposes.": "Schakel meer gedetailleerde houtkap in voor foutopsporingsdoeleinden.",
 	"Interval (ms)": "Interval (MS)",
+	"Light": "Licht",
 	"Light brightness": "Lichte helderheid",
 	"Light settings": "Lichtinstellingen",
 	"Light switch": "Lichtschakelaar",

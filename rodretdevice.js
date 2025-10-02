@@ -9,7 +9,7 @@ class RodretDevice {
 	/**
 	 * @param {String} name - Name of the rodret device
 	 * @param {IkeaRodret} adapter - Reference to the adapter
-	 * @param {ioBroker.AdapterConfig} config - Adapter configueration
+	 * @param {object} config - RODRET device configueration
 	 */
 	constructor(name, adapter, config) {
 		this.name = name;
@@ -45,7 +45,7 @@ class RodretDevice {
 			return;
 		}
 
-		this.adapter.log.debug(`${this.name}: Handling action ${action} for device ${this.config.rodretId}`);
+		this._logverbose(`${this.name}: Handling action ${action} for device ${this.config.rodretId}`);
 		this._clearDimInterval();
 
 		switch (action) {
@@ -132,6 +132,11 @@ class RodretDevice {
 	 */
 	_isNonEmptyString(value) {
 		return typeof value === 'string' && value.trim().length > 0;
+	}
+
+	_logverbose(msg) {
+		if (this.adapter.config.verbose) this.adapter.log.info(msg);
+		else this.adapter.log.debug(msg);
 	}
 }
 

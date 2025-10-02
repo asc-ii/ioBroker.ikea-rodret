@@ -16,5 +16,7 @@
 	"Interval (ms)": "Interval (ms)",
 	"Milliseconds between each dimming step.": "Milliseconds between each dimming step.",
 	"Verbose logging": "Verbose logging",
-	"Enable more detailed logging for debugging purposes.": "Enable more detailed logging for debugging purposes."
+	"Enable more detailed logging for debugging purposes.": "Enable more detailed logging for debugging purposes.",
+	"Light": "Light",
+	"Brightness": "Brightness"
 }

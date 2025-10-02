@@ -1,9 +1,11 @@
 {
+	"Brightness": "Brillo",
 	"Brightness change per step when holding the dimmer button.": "Cambio de brillo por paso Al presionar el botón Dimmer.",
 	"Brightness/Dimmer is missing": "Falta el brillo/atenuador",
 	"Dimmer settings": "Configuración de atenuador",
 	"Enable more detailed logging for debugging purposes.": "Habilite el registro más detallado para fines de depuración.",
 	"Interval (ms)": "Intervalo (MS)",
+	"Light": "Luz",
 	"Light brightness": "Brillo de luz",
 	"Light settings": "Configuración de luz",
 	"Light switch": "Interruptor de luz",

@@ -1,9 +1,11 @@
 {
+	"Brightness": "Luminosité",
 	"Brightness change per step when holding the dimmer button.": "Changement de luminosité par étape lors de la maintenance du bouton de gradation.",
 	"Brightness/Dimmer is missing": "La luminosité / le gradateur manque",
 	"Dimmer settings": "Gradateur",
 	"Enable more detailed logging for debugging purposes.": "Activer la journalisation plus détaillée à des fins de débogage.",
 	"Interval (ms)": "Intervalle (MS)",
+	"Light": "Lumière",
 	"Light brightness": "Luminosité légère",
 	"Light settings": "Paramètres légers",
 	"Light switch": "Interrupteur d'éclairage",

@@ -1,9 +1,11 @@
 {
+	"Brightness": "Jasność",
 	"Brightness change per step when holding the dimmer button.": "Zmiana jasności na krok podczas trzymania przycisku ściemniacza.",
 	"Brightness/Dimmer is missing": "Brakuje jasności/ściemniacza",
 	"Dimmer settings": "Ustawienia ściemniacza",
 	"Enable more detailed logging for debugging purposes.": "Włącz bardziej szczegółowe rejestrowanie do celów debugowania.",
 	"Interval (ms)": "Interwał (MS)",
+	"Light": "Światło",
 	"Light brightness": "Lekka jasność",
 	"Light settings": "Ustawienia światła",
 	"Light switch": "Przełącznik światła",
