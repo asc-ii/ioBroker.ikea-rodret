@@ -135,8 +135,8 @@ class RodretDevice {
 	}
 
 	_logverbose(msg) {
-		if (this.adapter.config.verbose) this.log.info(msg);
-		else this.log.debug(msg);
+		if (this.adapter.config.verbose) this.adapter.log.info(msg);
+		else this.adapter.log.debug(msg);
 	}
 }
 
