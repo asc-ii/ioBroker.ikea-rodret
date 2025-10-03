@@ -1,143 +1,136 @@
 {
-  "common": {
-    "name": "ikea-rodret",
-    "version": "0.0.5",
-    "news": {
-      "0.0.5": {
-        "en": ": feat: supporting multiple devices per adapter",
-        "de": ": feat: unterstützung mehrerer geräte pro adapter",
-        "ru": "подвиг: поддержка нескольких устройств на адаптер",
-        "pt": ": feat: suportando vários dispositivos por adaptador",
-        "nl": ": prestatie: meerdere apparaten per adapter ondersteunen",
-        "fr": ": exploit: prise en charge de plusieurs appareils par adaptateur",
-        "it": ": feat: supporto di più dispositivi per adattatore",
-        "es": ": hazaña: soporte para múltiples dispositivos por adaptador",
-        "pl": ": feat: obsługa wielu urządzeń na adapter",
-        "uk": ": feat: підтримка декількох пристроїв для адаптера",
-        "zh-cn": ": 功绩:每个适配器支持多个设备"
-      },
-      "0.0.4": {
-        "en": ": feat: add verbose logging option\n: fix: ignoring empty light state\nupdate admin layout",
-        "de": ": feat: verbose-logging-option hinzufügen\n: fix: leerer lichtzustand ignorieren\nadmin layout aktualisieren",
-        "ru": ": feat: add verbose logging option\nфиксация: игнорирование состояния пустого света\nобновление макета admin",
-        "pt": ": feat: add verbose loging option\n: fix: ignorando o estado de luz vazio\natualizar a disposição do administrador",
-        "nl": ": feat: voeg verbose logoptie toe\n: fix: lege lichttoestand negeren\nadmin-layout bijwerken",
-        "fr": ": feat: ajouter verbose log option\n: correction : ignorant l'état de la lumière vide\nmettre à jour la disposition de l'administrateur",
-        "it": ": feat: aggiungere l'opzione di registrazione verbose\n: fix: ignorando lo stato di luce vuoto\naggiornamento layout amministratore",
-        "es": ": hazaña: añadir la opción de registro de verbose\n: reparación: ignorando el estado de luz vacío\nactualización de administración",
-        "pl": ": feat: dodać opcję logowania verbose\n: fix: ignorowanie pustego stanu świetlnego\naktualizacja układu administratora",
-        "uk": ": feat: додати дієслово загиблий варіант\n: виправити: ігнорування пустого стану світла\nоновлення макета адміністратора",
-        "zh-cn": ": 功绩: 添加动词记录选项\n: 修补: 忽略空光状态\n更新管理员布局"
-      },
-      "0.0.3": {
-        "en": "remove debug function\nadd status logs",
-        "de": "debug-funktion entfernen\nstatusprotokolle hinzufügen",
-        "ru": "удалить функцию debug\nдобавить журналы состояния",
-        "pt": "remover a função de depuração\nadicionar registros de status",
-        "nl": "debugfunctie verwijderen\nstatuslogs toevoegen",
-        "fr": "supprimer la fonction debug\najouter des journaux d'état",
-        "it": "rimuovere la funzione di debug\naggiungere log di stato",
-        "es": "eliminar la función de depuración\nagregar registros de estado",
-        "pl": "usuń funkcję debugowania\ndodaj dzienniki stanu",
-        "uk": "видалити функцію видалення\nдодати журнали стану",
-        "zh-cn": "删除调试函数\n添加状态日志"
-      },
-      "0.0.2": {
-        "en": "fix translations",
-        "de": "übersetzungen anpassen",
-        "ru": "исправление переводов",
-        "pt": "corrigir traduções",
-        "nl": "vertalingen herstellen",
-        "fr": "corriger les traductions",
-        "it": "correggere le traduzioni",
-        "es": "arreglar traducciones",
-        "pl": "poprawianie tłumaczeń",
-        "uk": "фіксувати переклади",
-        "zh-cn": "固定翻译"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
-      }
-    },
-    "titleLang": {
-      "en": "IKEA RODRET",
-      "de": "IKEA RODRET",
-      "ru": "IKEA RODRET",
-      "pt": "IKEA RODRET",
-      "nl": "IKEA RODRET",
-      "fr": "IKEA RODRET",
-      "it": "IKEA RODRET",
-      "es": "IKEA RODRET",
-      "pl": "IKEA RODRET",
-      "uk": "IKEA RODRET",
-      "zh-cn": "宜家罗德雷特"
-    },
-    "desc": {
-      "en": "IKEA RODRET Dimmer (E2201) for dimming or brightening a configured light.",
-      "de": "IKEA RODRET Dimmer (E2201) zum Dimmen oder Aufhellen eines konfigurierten Lichts.",
-      "ru": "IKEA RODRET Dimmer (E2201) для затемнения или осветления сконфигурированного света.",
-      "pt": "IKEA RODRET Dimmer (E2201) para diminuir ou iluminar uma luz configurada.",
-      "nl": "IKEA RODRET Dimmer (E2201) voor het dimmen of oplichten van een geconfigureerd licht.",
-      "fr": "IKEA RODRET Dimmer (E2201) pour réduire ou éclairer une lumière configurée.",
-      "it": "Dimmer IKEA RODRET (E2201) per la dimmerazione o l'illuminazione di una luce configurata.",
-      "es": "IKEA RODRET Dimmer (E2201) para atenuar o iluminar una luz configurada.",
-      "pl": "IKEA RODRET Dimmer (E2201) do przyciemniania lub rozjaśniania skonfigurowanego światła.",
-      "uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
-      "zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
-    },
-    "authors": [
-      "Adrian Schyja <adrian.schyja@gmail.com>"
-    ],
-    "keywords": [
-      "dimmer",
-      "switch",
-      "ikea",
-      "rodret"
-    ],
-    "licenseInformation": {
-      "type": "free",
-      "license": "MIT"
-    },
-    "platform": "Javascript/Node.js",
-    "icon": "ikea-rodret.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/asc-ii/ioBroker.ikea-rodret/main/admin/ikea-rodret.png",
-    "readme": "https://github.com/asc-ii/ioBroker.ikea-rodret/blob/main/README.md",
-    "loglevel": "info",
-    "tier": 3,
-    "mode": "daemon",
-    "type": "iot-systems",
-    "compact": true,
-    "connectionType": "local",
-    "dataSource": "push",
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=7.0.23"
-      }
-    ]
-  },
-  "native": {
-    "rodretDevices": null,
-    "verbose": false
-  },
-  "objects": [],
-  "instanceObjects": []
+	"common": {
+		"name": "ikea-rodret",
+		"version": "0.0.5",
+		"news": {
+			"0.0.5": {
+				"en": ": feat: supporting multiple devices per adapter",
+				"de": ": feat: unterstützung mehrerer geräte pro adapter",
+				"ru": "подвиг: поддержка нескольких устройств на адаптер",
+				"pt": ": feat: suportando vários dispositivos por adaptador",
+				"nl": ": prestatie: meerdere apparaten per adapter ondersteunen",
+				"fr": ": exploit: prise en charge de plusieurs appareils par adaptateur",
+				"it": ": feat: supporto di più dispositivi per adattatore",
+				"es": ": hazaña: soporte para múltiples dispositivos por adaptador",
+				"pl": ": feat: obsługa wielu urządzeń na adapter",
+				"uk": ": feat: підтримка декількох пристроїв для адаптера",
+				"zh-cn": ": 功绩:每个适配器支持多个设备"
+			},
+			"0.0.4": {
+				"en": ": feat: add verbose logging option\n: fix: ignoring empty light state\nupdate admin layout",
+				"de": ": feat: verbose-logging-option hinzufügen\n: fix: leerer lichtzustand ignorieren\nadmin layout aktualisieren",
+				"ru": ": feat: add verbose logging option\nфиксация: игнорирование состояния пустого света\nобновление макета admin",
+				"pt": ": feat: add verbose loging option\n: fix: ignorando o estado de luz vazio\natualizar a disposição do administrador",
+				"nl": ": feat: voeg verbose logoptie toe\n: fix: lege lichttoestand negeren\nadmin-layout bijwerken",
+				"fr": ": feat: ajouter verbose log option\n: correction : ignorant l'état de la lumière vide\nmettre à jour la disposition de l'administrateur",
+				"it": ": feat: aggiungere l'opzione di registrazione verbose\n: fix: ignorando lo stato di luce vuoto\naggiornamento layout amministratore",
+				"es": ": hazaña: añadir la opción de registro de verbose\n: reparación: ignorando el estado de luz vacío\nactualización de administración",
+				"pl": ": feat: dodać opcję logowania verbose\n: fix: ignorowanie pustego stanu świetlnego\naktualizacja układu administratora",
+				"uk": ": feat: додати дієслово загиблий варіант\n: виправити: ігнорування пустого стану світла\nоновлення макета адміністратора",
+				"zh-cn": ": 功绩: 添加动词记录选项\n: 修补: 忽略空光状态\n更新管理员布局"
+			},
+			"0.0.3": {
+				"en": "remove debug function\nadd status logs",
+				"de": "debug-funktion entfernen\nstatusprotokolle hinzufügen",
+				"ru": "удалить функцию debug\nдобавить журналы состояния",
+				"pt": "remover a função de depuração\nadicionar registros de status",
+				"nl": "debugfunctie verwijderen\nstatuslogs toevoegen",
+				"fr": "supprimer la fonction debug\najouter des journaux d'état",
+				"it": "rimuovere la funzione di debug\naggiungere log di stato",
+				"es": "eliminar la función de depuración\nagregar registros de estado",
+				"pl": "usuń funkcję debugowania\ndodaj dzienniki stanu",
+				"uk": "видалити функцію видалення\nдодати журнали стану",
+				"zh-cn": "删除调试函数\n添加状态日志"
+			},
+			"0.0.2": {
+				"en": "fix translations",
+				"de": "übersetzungen anpassen",
+				"ru": "исправление переводов",
+				"pt": "corrigir traduções",
+				"nl": "vertalingen herstellen",
+				"fr": "corriger les traductions",
+				"it": "correggere le traduzioni",
+				"es": "arreglar traducciones",
+				"pl": "poprawianie tłumaczeń",
+				"uk": "фіксувати переклади",
+				"zh-cn": "固定翻译"
+			},
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "IKEA RODRET",
+			"de": "IKEA RODRET",
+			"ru": "IKEA RODRET",
+			"pt": "IKEA RODRET",
+			"nl": "IKEA RODRET",
+			"fr": "IKEA RODRET",
+			"it": "IKEA RODRET",
+			"es": "IKEA RODRET",
+			"pl": "IKEA RODRET",
+			"uk": "IKEA RODRET",
+			"zh-cn": "宜家罗德雷特"
+		},
+		"desc": {
+			"en": "IKEA RODRET Dimmer (E2201) for dimming or brightening a configured light.",
+			"de": "IKEA RODRET Dimmer (E2201) zum Dimmen oder Aufhellen eines konfigurierten Lichts.",
+			"ru": "IKEA RODRET Dimmer (E2201) для затемнения или осветления сконфигурированного света.",
+			"pt": "IKEA RODRET Dimmer (E2201) para diminuir ou iluminar uma luz configurada.",
+			"nl": "IKEA RODRET Dimmer (E2201) voor het dimmen of oplichten van een geconfigureerd licht.",
+			"fr": "IKEA RODRET Dimmer (E2201) pour réduire ou éclairer une lumière configurée.",
+			"it": "Dimmer IKEA RODRET (E2201) per la dimmerazione o l'illuminazione di una luce configurata.",
+			"es": "IKEA RODRET Dimmer (E2201) para atenuar o iluminar una luz configurada.",
+			"pl": "IKEA RODRET Dimmer (E2201) do przyciemniania lub rozjaśniania skonfigurowanego światła.",
+			"uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
+			"zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
+		},
+		"authors": ["Adrian Schyja <adrian.schyja@gmail.com>"],
+		"keywords": ["dimmer", "switch", "ikea", "rodret"],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "ikea-rodret.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/asc-ii/ioBroker.ikea-rodret/main/admin/ikea-rodret.png",
+		"readme": "https://github.com/asc-ii/ioBroker.ikea-rodret/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "iot-systems",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "push",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=7.6.17"
+			}
+		]
+	},
+	"native": {
+		"rodretDevices": null,
+		"verbose": false
+	},
+	"objects": [],
+	"instanceObjects": []
 }
