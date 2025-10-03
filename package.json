@@ -1,10 +1,10 @@
 {
   "name": "iobroker.ikea-rodret",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "ioBroker adapter for the IKEA RODRET Dimmer (E2201) that directly dims or brightens a configured light while a button is held—no custom scripts needed.",
   "author": {
     "name": "Adrian Schyja",
-    "email": "adrian.schyja@gmail.com"
+    "email": "asc-ii@gmx.net"
   },
   "contributors": [],
   "homepage": "https://github.com/asc-ii/ioBroker.ikea-rodret",

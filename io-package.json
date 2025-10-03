@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "ikea-rodret",
-		"version": "0.0.5",
+		"version": "0.0.6",
 		"news": {
+			"0.0.6": {
+				"en": "fix logging\nfix translations\nupdate adapter image",
+				"de": "fehlerbehebung\nübersetzungen anpassen\nupdate-adapterbild",
+				"ru": "фиксировать лесозаготовки\nисправление переводов\nобновить адаптер изображения",
+				"pt": "corrigir o registo\ncorrigir traduções\natualizar imagem do adaptador",
+				"nl": "loggen herstellen\nvertalingen herstellen\nupdate-adapterafbeelding",
+				"fr": "correction de l'enregistrement\ncorriger les traductions\nmettre à jour l'image de l'adaptateur",
+				"it": "correggere la registrazione\ncorreggere le traduzioni\naggiornamento immagine adattatore",
+				"es": "corrección de registro\narreglar traducciones\nactualización de la imagen del adaptador",
+				"pl": "naprawić logowanie\npoprawianie tłumaczeń\naktualizacji obrazu adaptera",
+				"uk": "фіксувати забір\nфіксувати переклади\nоновлення зображення адаптера",
+				"zh-cn": "固定记录\n固定翻译\n更新适配器图像"
+			},
 			"0.0.5": {
 				"en": ": feat: supporting multiple devices per adapter",
 				"de": ": feat: unterstützung mehrerer geräte pro adapter",
@@ -95,7 +108,7 @@
 			"uk": "IKEA RODRET Dimmer (E2201) для занурення або освітлення налаштованого світла.",
 			"zh-cn": "IKEA RODRET Dimmer(E2201)用于淡化或亮化配置的光线."
 		},
-		"authors": ["Adrian Schyja <adrian.schyja@gmail.com>"],
+		"authors": ["Adrian Schyja <asc-ii@gmx.net>"],
 		"keywords": ["dimmer", "switch", "ikea", "rodret"],
 		"licenseInformation": {
 			"type": "free",
