@@ -6,6 +6,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const RodretDevice = require('./rodretdevice');
+const LightDevice = require('./lightdevice');
 
 class IkeaRodret extends utils.Adapter {
     /**
@@ -21,33 +22,67 @@ class IkeaRodret extends utils.Adapter {
         this.on('objectChange', this.onObjectChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
 
-        this.devices = [];
+        this.deviceMap = new Map();
     }
 
     /**
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
-        if (!Array.isArray(this.config.rodretDevices) || this.config.rodretDevices.length === 0) {
+        if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
             this.log.error(`No devices configured - please check instance configuration of ${this.namespace}`);
             return;
         }
 
-        for (const devConf of this.config.rodretDevices) {
-            if (!devConf.rodretId || !devConf.lightId || !devConf.brightnessId) {
-                this.log.warn(`Skipping invalid device configuration: ${JSON.stringify(devConf)}`);
-                continue;
+        // for now we want to ensure that a rodret device is used only once
+        // and same for a light
+        const usedRodretIds = new Set();
+        const usedLightIds = new Set();
+
+        this.log.debug(`Config devices: ${JSON.stringify(this.config.devices)}`);
+
+        for (const devConf of this.config.devices) {
+            try {
+                if (!devConf.rodretId || !devConf.lightId) {
+                    this.log.warn(`Skipping invalid device configuration: ${JSON.stringify(devConf)}`);
+                    continue;
+                }
+
+                // Duplicate checks
+                if (usedRodretIds.has(devConf.rodretId)) {
+                    this.log.error(`RODRET device ${devConf.rodretId} is configured multiple times! Skipping.`);
+                    continue;
+                }
+                if (usedLightIds.has(devConf.lightId)) {
+                    this.log.error(`Light ${devConf.lightId} is already controlled by another RODRET! Skipping.`);
+                    continue;
+                }
+
+                // create LightDevice instance and validate
+                const light = new LightDevice(this, devConf.lightId);
+                await light.init();
+
+                // Create and register device instance
+                const device = new RodretDevice(this, devConf.rodretId, light);
+                await device.init();
+                await device.subscribe();
+
+                this.deviceMap.set(device.rodretActionId, device);
+
+                // remember used ids for duplicate checks
+                usedRodretIds.add(devConf.rodretId);
+                usedLightIds.add(devConf.lightId);
+
+                this.log.info(
+                    `Configured device '${device.name}': rodret=${devConf.rodretId}, light=${devConf.lightId}, brightness=${devConf.brightnessId}`,
+                );
+            } catch (err) {
+                this.log.error(`Skipping device config ${JSON.stringify(devConf)}: ${err.message}`);
             }
+        }
 
-            // get name of rodret object
-            const name = await this._getNameOfObject(devConf.rodretId);
-            const device = new RodretDevice(name, this, devConf);
-            this.devices.push(device);
-            await device.subscribe();
-
-            this.log.info(
-                `Configured device: rodret=${devConf.rodretId}, light=${devConf.lightId}, brightness=${devConf.brightnessId}`,
-            );
+        if (this.deviceMap.size === 0) {
+            this.log.warn('No valid devices configured after validation, adapter will be idle.');
         }
     }
 
@@ -57,9 +92,9 @@ class IkeaRodret extends utils.Adapter {
      * @param {() => void} callback The callback function has to be called under any circumstances.
      */
     onUnload(callback) {
-        this._logverbose('Unloading adapter...');
+        this.log.debug('Unloading adapter...');
         try {
-            for (const dev of this.devices) {
+            for (const dev of this.deviceMap.values()) {
                 dev._clearDimInterval();
             }
 
@@ -78,10 +113,10 @@ class IkeaRodret extends utils.Adapter {
     onObjectChange(id, obj) {
         if (obj) {
             // The object was changed
-            this._logverbose(`object ${id} changed: ${JSON.stringify(obj)}`);
+            this.log.debug(`object ${id} changed: ${JSON.stringify(obj)}`);
         } else {
             // The object was deleted
-            this._logverbose(`object ${id} deleted`);
+            this.log.debug(`object ${id} deleted`);
 
             this.subscribeForeignStatesAsync;
         }
@@ -95,7 +130,7 @@ class IkeaRodret extends utils.Adapter {
      */
     async onStateChange(id, state) {
         if (!state) {
-            this._logverbose(`state ${id} deleted`);
+            this.log.debug(`state ${id} deleted`);
             return;
         }
 
@@ -103,32 +138,12 @@ class IkeaRodret extends utils.Adapter {
             return;
         }
 
-        this._logverbose(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+        this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
-        if (typeof state.val === 'string') {
-            // find according devuce instance
-            const device = this.devices.find(d => id === d.rodretActionId);
-            if (device) {
-                await device.handleAction(state.val);
-            } else {
-                this.log.error(`Received action for unknown device: ${id}`);
-            }
-        }
-    }
-
-    /**
-     * @param {string} objectId Id of object to get the name from
-     */
-    async _getNameOfObject(objectId) {
-        const data = await this.getForeignObjectAsync(objectId);
-        return data?.common?.name || 'UnknUnknownonw';
-    }
-
-    _logverbose(msg) {
-        if (this.config.verbose) {
-            this.log.info(msg);
-        } else {
-            this.log.debug(msg);
+        // find according device instance
+        const device = this.deviceMap.get(id);
+        if (device && typeof state.val === 'string') {
+            await device.handleAction(state.val);
         }
     }
 }

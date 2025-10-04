@@ -1,84 +1,37 @@
 {
-	"i18n": true,
-	"type": "panel",
-	"items": {
-		"rodretDevices": {
-			"type": "table",
-			"label": "Devices",
-			"sm": 12,
-			"md": 12,
-			"lg": 12,
-			"items": [
-				{
-					"type": "objectId",
-					"width": "20%",
-					"title": "Device",
-					"help": "Select the RODRET device",
-					"types": ["device"],
-					"attr": "rodretId",
-					"filter": false,
-					"sort": false,
-					"default": ""
-				},
-				{
-					"type": "objectId",
-					"width": "20%",
-					"title": "Light",
-					"help": "Select the light switch state",
-					"attr": "lightId",
-					"filter": false,
-					"sort": false,
-					"default": ""
-				},
-				{
-					"type": "objectId",
-					"width": "20%",
-					"title": "Brightness",
-					"help": "Select the brightness state",
-					"attr": "brightnessId",
-					"filter": false,
-					"sort": false,
-					"default": ""
-				},
-				{
-					"type": "number",
-					"width": "20%",
-					"title": "Dim step",
-					"help": "Brightness change per step when holding the dimmer button.",
-					"attr": "dimStep",
-					"filter": false,
-					"sort": false,
-					"default": 5,
-					"min": 5,
-					"max": 25,
-					"unit": "%"
-				},
-				{
-					"type": "number",
-					"width": "20%",
-					"title": "Dim interval",
-					"help": "Milliseconds between each dimming step.",
-					"attr": "dimInterval",
-					"filter": false,
-					"sort": false,
-					"default": 200,
-					"min": 25,
-					"max": 1000,
-					"unit": "s"
-				}
-			]
-		},
-
-		"verbose": {
-			"type": "checkbox",
-			"label": "Verbose logging",
-			"help": "Enable more detailed logging for debugging purposes.",
-			"newLine": true,
-			"xs": 12,
-			"sm": 12,
-			"md": 6,
-			"lg": 6,
-			"xl": 6
-		}
-	}
+    "i18n": true,
+    "type": "panel",
+    "items": {
+        "devices": {
+            "type": "table",
+            "label": "Devices",
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "items": [
+                {
+                    "type": "objectId",
+                    "width": "20%",
+                    "title": "Device",
+                    "help": "Select the RODRET device",
+                    "types": ["device"],
+                    "attr": "rodretId",
+                    "filter": false,
+                    "sort": false,
+                    "default": ""
+                },
+                {
+                    "type": "objectId",
+                    "width": "20%",
+                    "title": "Light",
+                    "help": "Select the light device",
+                    "types": ["device"],
+                    "attr": "lightId",
+                    "filter": false,
+                    "sort": false,
+                    "default": ""
+                }
+            ]
+        }
+    }
 }
