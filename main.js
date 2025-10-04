@@ -47,6 +47,10 @@ class IkeaRodret extends utils.Adapter {
                     this.log.warn(`Skipping invalid device configuration: ${JSON.stringify(devConf)}`);
                     continue;
                 }
+                if (devConf.rodretId === !devConf.lightId) {
+                    this.log.error(`RODRET and light id must not be same. Skipping invalid device configuration.`);
+                    continue;
+                }
 
                 // Duplicate checks
                 if (usedRodretIds.has(devConf.rodretId)) {
