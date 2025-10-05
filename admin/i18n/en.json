@@ -1,22 +1,7 @@
 {
-	"RODRET settings": "Adapter settings for RODRET adapter",
-	"RODRET device": "RODRET device",
-	"Select the RODRET device": "Select the RODRET device",
-	"RODRET device is missing": "RODRET device is missing",
-	"Light settings": "Light settings",
-	"Light switch": "Light switch",
-	"Select the light switch state": "Select the light switch state",
-	"Light switch is missing": "Light switch is missing",
-	"Light brightness": "Light brightness",
-	"Select the brightness state": "Select the brightness state",
-	"Brightness/Dimmer is missing": "Brightness/Dimmer is missing",
-	"Dimmer settings": "Dimmer settings",
-	"Step (%)": "Step (%)",
-	"Brightness change per step when holding the dimmer button.": "Brightness change per step when holding the dimmer button.",
-	"Interval (ms)": "Interval (ms)",
-	"Milliseconds between each dimming step.": "Milliseconds between each dimming step.",
-	"Verbose logging": "Verbose logging",
-	"Enable more detailed logging for debugging purposes.": "Enable more detailed logging for debugging purposes.",
-	"Light": "Light",
-	"Brightness": "Brightness"
+    "RODRET settings": "Adapter settings for RODRET adapter",
+    "Device": "Device",
+    "Devices": "Devices",
+    "Select the light device": "Select the light device",
+    "Select the RODRET device": "Select the RODRET device"
 }

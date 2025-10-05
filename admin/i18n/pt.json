@@ -1,22 +1,7 @@
 {
-	"Brightness": "Brilho",
-	"Brightness change per step when holding the dimmer button.": "Alteração do brilho por etapa ao segurar o botão mais escuro.",
-	"Brightness/Dimmer is missing": "Falta brilho/dimmer",
-	"Dimmer settings": "Configurações mais escuras",
-	"Enable more detailed logging for debugging purposes.": "Habilite o log mais detalhado para fins de depuração.",
-	"Interval (ms)": "Intervalo (MS)",
-	"Light": "Luz",
-	"Light brightness": "Brilho leve",
-	"Light settings": "Configurações de luz",
-	"Light switch": "Interruptor de luz",
-	"Light switch is missing": "Interruptor de luz está faltando",
-	"Milliseconds between each dimming step.": "Milissegundos entre cada etapa de escurecimento.",
-	"RODRET device": "Dispositivo Rodret",
-	"RODRET device is missing": "O dispositivo Rodret está faltando",
-	"RODRET settings": "Configurações do adaptador para adaptador Rodret",
-	"Select the RODRET device": "Selecione o dispositivo Rodret",
-	"Select the brightness state": "Selecione o estado de brilho",
-	"Select the light switch state": "Selecione o estado do interruptor de luz",
-	"Step (%)": "Etapa (%)",
-	"Verbose logging": "Registro detalhado"
+    "Device": "Dispositivo",
+    "Devices": "Dispositivos",
+    "RODRET settings": "Configurações do adaptador para adaptador Rodret",
+    "Select the RODRET device": "Selecione o dispositivo Rodret",
+    "Select the light device": "Selecione o dispositivo de luz"
 }

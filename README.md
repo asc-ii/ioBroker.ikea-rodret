@@ -127,6 +127,12 @@ Each RODRET-light mapping requires the following settings:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+- (asc-ii) fix: log message with undefined values
+- (asc-ii) fix: translation in admin UI
+
 ### 0.0.7 (2025-10-05)
 
 - (asc-ii) rework: using `brightness_move` state for dimming instead of custom timer settings

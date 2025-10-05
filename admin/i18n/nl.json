@@ -1,22 +1,7 @@
 {
-	"Brightness": "Helderheid",
-	"Brightness change per step when holding the dimmer button.": "De helderheid verandert per stap bij het vasthouden van de dimmer -knop.",
-	"Brightness/Dimmer is missing": "Helderheid/dimmer ontbreekt",
-	"Dimmer settings": "Dimmer -instellingen",
-	"Enable more detailed logging for debugging purposes.": "Schakel meer gedetailleerde houtkap in voor foutopsporingsdoeleinden.",
-	"Interval (ms)": "Interval (MS)",
-	"Light": "Licht",
-	"Light brightness": "Lichte helderheid",
-	"Light settings": "Lichtinstellingen",
-	"Light switch": "Lichtschakelaar",
-	"Light switch is missing": "Lichtschakelaar ontbreekt",
-	"Milliseconds between each dimming step.": "Milliseconden tussen elke dimstap.",
-	"RODRET device": "Rodret -apparaat",
-	"RODRET device is missing": "Rodret -apparaat ontbreekt",
-	"RODRET settings": "Adapterinstellingen voor Rodret -adapter",
-	"Select the RODRET device": "Selecteer het Rodret -apparaat",
-	"Select the brightness state": "Selecteer de helderheidstoestand",
-	"Select the light switch state": "Selecteer de toestand van de lichtschakelaar",
-	"Step (%)": "Stap (%)",
-	"Verbose logging": "Uitgebreide houtkap"
+    "Device": "Apparaat",
+    "Devices": "Apparaten",
+    "RODRET settings": "Adapterinstellingen voor Rodret -adapter",
+    "Select the RODRET device": "Selecteer het Rodret -apparaat",
+    "Select the light device": "Selecteer het lichtapparaat"
 }

@@ -1,22 +1,7 @@
 {
-	"Brightness": "亮度",
-	"Brightness change per step when holding the dimmer button.": "持有调光按钮时的亮度每步变化。",
-	"Brightness/Dimmer is missing": "亮度/昏暗者缺失",
-	"Dimmer settings": "调光器设置",
-	"Enable more detailed logging for debugging purposes.": "启用更详细的日志记录以进行调试目的。",
-	"Interval (ms)": "间隔（MS）",
-	"Light": "光",
-	"Light brightness": "明亮的亮度",
-	"Light settings": "灯光设置",
-	"Light switch": "轻开关",
-	"Light switch is missing": "灯开关缺少",
-	"Milliseconds between each dimming step.": "每个调光步骤之间的毫秒。",
-	"RODRET device": "Rodret设备",
-	"RODRET device is missing": "Rodret设备缺少",
-	"RODRET settings": "Rodret适配器的适配器设置",
-	"Select the RODRET device": "选择Rodret设备",
-	"Select the brightness state": "选择亮度状态",
-	"Select the light switch state": "选择灯开关状态",
-	"Step (%)": "步 （％）",
-	"Verbose logging": "冗长的记录"
+    "Device": "设备",
+    "Devices": "设备",
+    "RODRET settings": "Rodret适配器的适配器设置",
+    "Select the RODRET device": "选择Rodret设备",
+    "Select the light device": "选择轻型设备"
 }

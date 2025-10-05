@@ -1,22 +1,7 @@
 {
-	"Brightness": "Яскравість",
-	"Brightness change per step when holding the dimmer button.": "Зміна яскравості за крок при триманні кнопки тьмяності.",
-	"Brightness/Dimmer is missing": "Яскравість/тьмяність відсутня",
-	"Dimmer settings": "Налаштування тьмяти",
-	"Enable more detailed logging for debugging purposes.": "Увімкнути більш детальну журнал для налагодження.",
-	"Interval (ms)": "Інтервал (MS)",
-	"Light": "Світлий",
-	"Light brightness": "Світла яскравість",
-	"Light settings": "Налаштування світла",
-	"Light switch": "Перемикач світла",
-	"Light switch is missing": "Перемикач світла відсутній",
-	"Milliseconds between each dimming step.": "Мілісекунди між кожним кроком затемнення.",
-	"RODRET device": "Пристрій Родрета",
-	"RODRET device is missing": "Пристрій Rodret відсутній",
-	"RODRET settings": "Налаштування адаптера для адаптера Rodret",
-	"Select the RODRET device": "Виберіть пристрій Rodret",
-	"Select the brightness state": "Виберіть стан яскравості",
-	"Select the light switch state": "Виберіть стан вимикача світла",
-	"Step (%)": "Крок (%)",
-	"Verbose logging": "Верхова реєстрація"
+    "Device": "Пристрій",
+    "Devices": "Пристрої",
+    "RODRET settings": "Налаштування адаптера для адаптера Rodret",
+    "Select the RODRET device": "Виберіть пристрій Rodret",
+    "Select the light device": "Виберіть пристрій світла"
 }
