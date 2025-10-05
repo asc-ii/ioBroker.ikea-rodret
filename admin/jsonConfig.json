@@ -8,10 +8,12 @@
             "sm": 12,
             "md": 12,
             "lg": 12,
+            "xl": 12,
+            "xs": 12,
             "items": [
                 {
                     "type": "objectId",
-                    "width": "20%",
+                    "width": "50%",
                     "title": "Device",
                     "help": "Select the RODRET device",
                     "types": ["device"],
@@ -22,7 +24,7 @@
                 },
                 {
                     "type": "objectId",
-                    "width": "20%",
+                    "width": "50%",
                     "title": "Light",
                     "help": "Select the light device",
                     "types": ["device"],
