@@ -25,12 +25,16 @@ class LightDevice {
         /** Level/brightness state ID */
         this.levelId = null;
         /** Default move speed for dimming */
-        this.moveSpeed = 50;
+        this.minMoveSpeed = -50;
+        this.maxMoveSpeed = 50;
     }
 
     /**
-     * Validate the configured light and discover its states.
-     *
+     * Initialize the light device by discovering its states.
+     * - Finds switch, brightness_move, transition_time, and level states.
+     * - Reads min/max move speeds from brightness_move state if available.
+     * - Sets transitionTime = 0 if transition_time not found.
+     * 
      * @throws {Error} if validation fails
      */
     async init() {
@@ -61,13 +65,22 @@ class LightDevice {
             const id_lowercase = id.toLowerCase();
             const role = obj.common.role;
 
+            // switch
             if (role === 'switch') {
                 this.switchId = id;
                 this.adapter.log.debug(`Found switch state for light ${this.lightRootId}: ${id}`);
-            } else if (id_lowercase.endsWith('.brightness_move')) {
+            } 
+            
+            // brightness_move
+            if (id_lowercase.endsWith('.brightness_move')) {
                 this.brightnessMoveId = id;
+                this.minMoveSpeed = obj.common?.min ?? -50;
+                this.maxMoveSpeed = obj.common?.max ?? 50;
                 this.adapter.log.debug(`Found brightness_move state for light ${this.lightRootId}: ${id}`);
-            } else if (
+            } 
+            
+            // dim level
+            if (
                 id_lowercase.endsWith('.level') ||
                 id_lowercase.endsWith('.brightness') ||
                 role === 'level.dimmer'
@@ -90,6 +103,10 @@ class LightDevice {
             this.adapter.log.warn(
                 `Light ${this.lightRootId} has no level/brightness state, auto-stop dimming not supported`,
             );
+        }
+
+        if (this.minMoveSpeed > 0) {
+            this.minMoveSpeed = -this.minMoveSpeed;
         }
     }
 
@@ -120,7 +137,7 @@ class LightDevice {
         }
 
         // 3. Start brightness_move for dimming up
-        await this._startMove(+this.moveSpeed);
+        await this._startMove(+this.maxMoveSpeed);
     }
 
     /**
@@ -142,7 +159,7 @@ class LightDevice {
             }
         }
 
-        await this._startMove(-this.moveSpeed, this.transitionTime);
+        await this._startMove(this.minMoveSpeed, this.transitionTime);
     }
 
     /**

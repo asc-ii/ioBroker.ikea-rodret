@@ -130,5 +130,54 @@ describe("LightDevice", () => {
                 expect(err.message).to.match(/Light zigbee.0.light4 has no switch state/);
             }
         });
+
+        it("should read min and max move speeds from brightness_move", async () => {
+            const lightObject = { _id: "zigbee.0.light5", type: "device" };
+
+            const states = {
+                "zigbee.0.light5.on": { common: { role: "switch" } },
+                "zigbee.0.light5.brightness_move": { common: { name: "brightness_move", min: -30, max: 70 } },
+                "zigbee.0.light5.level": { common: { role: "level.dimmer" } },
+            };
+
+            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
+                if (id === "zigbee.0.light5") return lightObject;
+                return states[id];
+            });
+            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
+                return states;
+            });
+
+            const device = new LightDevice(adapterMock, "zigbee.0.light5");
+            await device.init();
+
+            expect(device.brightnessMoveId).to.equal("zigbee.0.light5.brightness_move");
+            expect(device.minMoveSpeed).to.equal(-30);
+            expect(device.maxMoveSpeed).to.equal(70);
+        });
+
+        it("should fallback to defaults if brightness_move has no min/max", async () => {
+            const lightObject = { _id: "zigbee.0.light6", type: "device" };
+
+            const states = {
+                "zigbee.0.light6.on": { common: { role: "switch" } },
+                "zigbee.0.light6.brightness_move": { common: { name: "brightness_move" } }, // no min/max
+                "zigbee.0.light6.level": { common: { role: "level.dimmer" } },
+            };
+
+            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
+                if (id === "zigbee.0.light6") return lightObject;
+                return states[id];
+            });
+            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
+                return states;
+            });
+
+            const device = new LightDevice(adapterMock, "zigbee.0.light6");
+            await device.init();
+
+            expect(device.minMoveSpeed).to.equal(-50); // default
+            expect(device.maxMoveSpeed).to.equal(50);  // default
+        });
     });
 });
