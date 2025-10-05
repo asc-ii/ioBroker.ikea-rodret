@@ -78,7 +78,7 @@ class IkeaRodret extends utils.Adapter {
                 usedLightIds.add(devConf.lightId);
 
                 this.log.info(
-                    `Configured device '${device.name}': rodret=${devConf.rodretId}, light=${devConf.lightId}, brightness=${devConf.brightnessId}`,
+                    `Configured device '${device.name}': rodret=${devConf.rodretId}, light=${devConf.lightId}`,
                 );
             } catch (err) {
                 this.log.error(`Skipping device config ${JSON.stringify(devConf)}: ${err.message}`);
