@@ -21,31 +21,31 @@ so you would have to create your own JavaScript to achieve continuous dimming.
 With this adapter you simply configure a target light, and the adapter will
 brighten or dim it smoothly while you hold the button — no extra scripting required.
 
-Currently, only certain device types are supported (see below).  
+Currently, only certain device types are supported (see below).
 
 ---
 
 ## How it Works
 
-1. The adapter **monitors RODRET button actions**.  
-2. For each configured RODRET device, it manages an associated light (root object).  
-3. When a button is pressed:  
-   - **ON/OFF actions** toggle the light.  
-   - **Brightness UP/DOWN actions** start dimming the light using `brightness_move`.  
-   - **STOP action** stops dimming.  
+1. The adapter **monitors RODRET button actions**.
+2. For each configured RODRET device, it manages an associated light (root object).
+3. When a button is pressed:
+    - **ON/OFF actions** toggle the light.
+    - **Brightness UP/DOWN actions** start dimming the light using `brightness_move`.
+    - **STOP action** stops dimming.
 
 ### Dimming Logic
 
 - **Dimming up (`dimUp`)**:
-  - If the light is off, it is automatically switched on before dimming.  
-  - The light’s brightness increases continuously until:
-    - Maximum brightness (100) is reached, or  
-    - The STOP action is triggered.  
+    - If the light is off, it is automatically switched on before dimming.
+    - The light’s brightness increases continuously until:
+        - Maximum brightness (100) is reached, or
+        - The STOP action is triggered.
 
 - **Dimming down (`dimDown`)**:
-  - The light’s brightness decreases continuously.  
-  - When brightness reaches 0:
-    - Dimming automatically stops.  
+    - The light’s brightness decreases continuously.
+    - When brightness reaches 0:
+        - Dimming automatically stops.
 
 ---
 
@@ -53,29 +53,29 @@ Currently, only certain device types are supported (see below).
 
 ### RODRET Device
 
-- **Parent object**: The RODRET button root object.  
+- **Parent object**: The RODRET button root object.
 - **Required state**:
-  - `.action` — indicates which button action was triggered.  
+    - `.action` — indicates which button action was triggered.
 - **Supported actions**:
-  - `on` → Switch light on  
-  - `off` → Switch light off  
-  - `brightness_move_up` → Start brightening  
-  - `brightness_move_down` → Start dimming  
-  - `brightness_stop` → Stop dimming  
+    - `on` → Switch light on
+    - `off` → Switch light off
+    - `brightness_move_up` → Start brightening
+    - `brightness_move_down` → Start dimming
+    - `brightness_stop` → Stop dimming
 
 > Other device types are **not supported** yet.
 
 ### Light Device
 
-- **Root object**: The root object of the light in ioBroker.  
+- **Root object**: The root object of the light in ioBroker.
 - **Required states**:
-  - **Switch state** (`role = switch`) — used for turning the light on/off.  
+    - **Switch state** (`role = switch`) — used for turning the light on/off.
 - **Optional states for dimming**:
-  - **Brightness move state** (`name = brightness_move` OR `role = level.dimmer.move`) — used to start/stop dimming continuously.  
-  - **Transition time state** (`name = transition_time`) — used to set the dimming speed.  
-  - **Level/Brightness state** (`name = level` OR `name = brightness` OR `role = level.dimmer`) — used to monitor brightness and automatically stop dimming at min/max.  
+    - **Brightness move state** (`name = brightness_move` OR `role = level.dimmer.move`) — used to start/stop dimming continuously.
+    - **Transition time state** (`name = transition_time`) — used to set the dimming speed.
+    - **Level/Brightness state** (`name = level` OR `name = brightness` OR `role = level.dimmer`) — used to monitor brightness and automatically stop dimming at min/max.
 
-> If a light **does not have `brightness_move` or level**, only on/off control will work.  
+> If a light **does not have `brightness_move` or level**, only on/off control will work.
 
 ---
 
@@ -83,43 +83,43 @@ Currently, only certain device types are supported (see below).
 
 Each RODRET-light mapping requires the following settings:
 
-| Setting       | Description |
-|---------------|-------------|
-| **rodretId**  | The root object ID of the RODRET button. |
-| **lightId**   | The root object ID of the light. The adapter automatically discovers child states (`switch`, `brightness_move`, `transition_time`, `level`). |
+| Setting      | Description                                                                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **rodretId** | The root object ID of the RODRET button.                                                                                                     |
+| **lightId**  | The root object ID of the light. The adapter automatically discovers child states (`switch`, `brightness_move`, `transition_time`, `level`). |
 
 ### Optional adapter settings (per device)
 
-> Note: You **do not need to configure moveSpeed or transitionTime**. The adapter reads `transition_time` from the light if available, and uses a default dim speed internally.  
+> Note: You **do not need to configure moveSpeed or transitionTime**. The adapter reads `transition_time` from the light if available, and uses a default dim speed internally.
 
 ---
 
 ## Supported Devices
 
-- **RODRET buttons** (IKEA) — wired push buttons.  
-- **Lights with switch state** — mandatory.  
-- **Lights with brightness_move & level** — supports dimming up/down with automatic stop.  
+- **RODRET buttons** (IKEA) — wired push buttons.
+- **Lights with switch state** — mandatory.
+- **Lights with brightness_move & level** — supports dimming up/down with automatic stop.
 - Other lights or devices without these states are **currently not tested/supported**.
 
 ---
 
 ## Behavior Summary
 
-| Button Action           | Effect on Light                  |
-|------------------------|---------------------------------|
-| `on`                   | Switch light on                 |
-| `off`                  | Switch light off                |
-| `brightness_move_up`   | Dimming up (light switched on if off) |
+| Button Action          | Effect on Light                                   |
+| ---------------------- | ------------------------------------------------- |
+| `on`                   | Switch light on                                   |
+| `off`                  | Switch light off                                  |
+| `brightness_move_up`   | Dimming up (light switched on if off)             |
 | `brightness_move_down` | Dimming down (light switches off if brightness 0) |
-| `brightness_stop`      | Stop dimming                     |
+| `brightness_stop`      | Stop dimming                                      |
 
 ---
 
 ## Notes
 
-- The adapter **handles multiple RODRET-light pairs** independently.  
-- The adapter **prevents multiple RODRET buttons from controlling the same light** to avoid conflicts.  
-- Dimming is **continuous** until max/min brightness or STOP is triggered.  
+- The adapter **handles multiple RODRET-light pairs** independently.
+- The adapter **prevents multiple RODRET buttons from controlling the same light** to avoid conflicts.
+- Dimming is **continuous** until max/min brightness or STOP is triggered.
 
 ## Changelog
 
@@ -127,6 +127,11 @@ Each RODRET-light mapping requires the following settings:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+- (asc-ii) rework: using `brightness_move` state for dimming instead of custom timer settings
+
 ### 0.0.6 (2025-10-02)
 
 - (asc-ii) fix logging
