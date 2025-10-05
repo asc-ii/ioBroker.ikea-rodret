@@ -34,7 +34,7 @@ class LightDevice {
      * - Finds switch, brightness_move, transition_time, and level states.
      * - Reads min/max move speeds from brightness_move state if available.
      * - Sets transitionTime = 0 if transition_time not found.
-     * 
+     *
      * @throws {Error} if validation fails
      */
     async init() {
@@ -69,22 +69,18 @@ class LightDevice {
             if (role === 'switch') {
                 this.switchId = id;
                 this.adapter.log.debug(`Found switch state for light ${this.lightRootId}: ${id}`);
-            } 
-            
+            }
+
             // brightness_move
             if (id_lowercase.endsWith('.brightness_move')) {
                 this.brightnessMoveId = id;
                 this.minMoveSpeed = obj.common?.min ?? -50;
                 this.maxMoveSpeed = obj.common?.max ?? 50;
                 this.adapter.log.debug(`Found brightness_move state for light ${this.lightRootId}: ${id}`);
-            } 
-            
+            }
+
             // dim level
-            if (
-                id_lowercase.endsWith('.level') ||
-                id_lowercase.endsWith('.brightness') ||
-                role === 'level.dimmer'
-            ) {
+            if (id_lowercase.endsWith('.level') || id_lowercase.endsWith('.brightness') || role === 'level.dimmer') {
                 this.levelId = id;
                 this.adapter.log.debug(`Found brightness/level state for light ${this.lightRootId}: ${id}`);
             }
