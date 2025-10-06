@@ -201,6 +201,8 @@ class LightDevice {
      * @param {string} rodretId - The ID of the RODRET issuing the action.
      */
     async handleAction(action, rodretId) {
+        console.log('#### 0 ');
+        throw new Error('aaaa');
         switch (action) {
             case ACTION_BRIGHTNESS_UP:
             case ACTION_BRIGHTNESS_DOWN:
@@ -226,6 +228,7 @@ class LightDevice {
                 break;
 
             case ACTION_ON:
+                console.log('1');
                 await this._switch(true);
                 break;
 
