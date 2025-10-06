@@ -1,5 +1,13 @@
+const ACTION_ON = 'on';
+const ACTION_OFF = 'off';
+const ACTION_BRIGHTNESS_UP = 'brightness_move_up';
+const ACTION_BRIGHTNESS_DOWN = 'brightness_move_down';
+const ACTION_BRIGHTNESS_STOP = 'brightness_stop';
+const DEFAULT_MOVE_SPEED = 50;
+
 /**
- * Handles light control logic (switch, dimming).
+ * Represents a Light device that can be controlled (switch, dimming)
+ * by one or multiple RODRETs.
  */
 class LightDevice {
     /**
@@ -25,8 +33,10 @@ class LightDevice {
         /** Level/brightness state ID */
         this.levelId = null;
         /** Default move speed for dimming */
-        this.minMoveSpeed = -50;
-        this.maxMoveSpeed = 50;
+        this.minMoveSpeed = -DEFAULT_MOVE_SPEED;
+        this.maxMoveSpeed = DEFAULT_MOVE_SPEED;
+        /** rodretId currently controlling this light */
+        this.activeController = null;
     }
 
     /**
@@ -65,21 +75,21 @@ class LightDevice {
             const id_lowercase = id.toLowerCase();
             const role = obj.common.role;
 
-            // switch
+            // find: switch
             if (role === 'switch') {
                 this.switchId = id;
                 this.adapter.log.debug(`Found switch state for light ${this.lightRootId}: ${id}`);
             }
 
-            // brightness_move
+            // find: brightness_move
             if (id_lowercase.endsWith('.brightness_move')) {
                 this.brightnessMoveId = id;
-                this.minMoveSpeed = obj.common?.min ?? -50;
-                this.maxMoveSpeed = obj.common?.max ?? 50;
+                this.minMoveSpeed = obj.common?.min ?? -DEFAULT_MOVE_SPEED;
+                this.maxMoveSpeed = obj.common?.max ?? DEFAULT_MOVE_SPEED;
                 this.adapter.log.debug(`Found brightness_move state for light ${this.lightRootId}: ${id}`);
             }
 
-            // dim level
+            // find: dim level
             if (id_lowercase.endsWith('.level') || id_lowercase.endsWith('.brightness') || role === 'level.dimmer') {
                 this.levelId = id;
                 this.adapter.log.debug(`Found brightness/level state for light ${this.lightRootId}: ${id}`);
@@ -87,6 +97,7 @@ class LightDevice {
         }
 
         if (!this.switchId) {
+            // Critical: switch state is required
             throw new Error(`Light ${this.lightRootId} has no switch state`);
         }
 
@@ -111,7 +122,7 @@ class LightDevice {
      *
      * @param {boolean} onOrOff Desired state
      */
-    async switch(onOrOff) {
+    async _switch(onOrOff) {
         if (!this.switchId) {
             throw new Error(`No switch state found for light ${this.lightRootId}`);
         }
@@ -123,13 +134,13 @@ class LightDevice {
      * If the light is currently off, it will be switched on first.
      * Then brightness_move is set to positive moveSpeed to start dimming up.
      */
-    async dimUp() {
+    async _dimUp() {
         // 1. Read the current switch state
         const state = await this.adapter.getForeignStateAsync(this.switchId);
 
         // 2. If the light is off, turn it on first
         if (!state?.val) {
-            await this.switch(true); // switch on if off
+            await this._switch(true); // switch on if off
         }
 
         // 3. Start brightness_move for dimming up
@@ -141,7 +152,7 @@ class LightDevice {
      * If the current brightness is 0 or lower, the light will be switched off.
      * Otherwise, brightness_move is set to negative moveSpeed to start dimming down.
      */
-    async dimDown() {
+    async _dimDown() {
         if (!this.brightnessMoveId) {
             return;
         }
@@ -150,7 +161,7 @@ class LightDevice {
         if (this.levelId) {
             const brightnessState = await this.adapter.getForeignStateAsync(this.levelId);
             if (brightnessState?.val <= 0) {
-                await this.switch(false);
+                await this._switch(false);
                 return;
             }
         }
@@ -161,7 +172,7 @@ class LightDevice {
     /**
      * Stop dimming (sets brightness_move to 0) and clears any running interval.
      */
-    async stopDim() {
+    async _stopDim() {
         if (this.brightnessMoveId) {
             await this.adapter.setForeignStateAsync(this.brightnessMoveId, { val: 0 });
         }
@@ -180,6 +191,48 @@ class LightDevice {
 
         // Start brightness_move
         await this.adapter.setForeignStateAsync(this.brightnessMoveId, { val: speed });
+    }
+
+    /**
+     * Handles an action command coming from a RODRET.
+     * Prevents concurrent control by multiple RODRETs.
+     *
+     * @param {string} action - The action command (on/off/dim-up/dim-down/dim-stop).
+     * @param {string} rodretId - The ID of the RODRET issuing the action.
+     */
+    async handleAction(action, rodretId) {
+        switch (action) {
+            case ACTION_BRIGHTNESS_UP:
+            case ACTION_BRIGHTNESS_DOWN:
+                if (this.activeController && this.activeController !== rodretId) {
+                    this.adapter.log.info(
+                        `Light ${this.lightRootId} is currently controlled by ${this.activeController}, ignoring ${rodretId}`,
+                    );
+                    return;
+                }
+                this.activeController = rodretId;
+                if (action === ACTION_BRIGHTNESS_UP) {
+                    await this._dimUp();
+                } else {
+                    await this._dimDown();
+                }
+                break;
+
+            case ACTION_BRIGHTNESS_STOP:
+                if (this.activeController === rodretId) {
+                    await this._stopDim();
+                    this.activeController = null;
+                }
+                break;
+
+            case ACTION_ON:
+                await this._switch(true);
+                break;
+
+            case ACTION_OFF:
+                await this._switch(false);
+                break;
+        }
     }
 }
 

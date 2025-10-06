@@ -34,60 +34,68 @@ class IkeaRodret extends utils.Adapter {
             return;
         }
 
-        // for now we want to ensure that a rodret device is used only once
-        // and same for a light
-        const usedRodretIds = new Set();
-        const usedLightIds = new Set();
+        const rodretDevices = new Map();
 
-        this.log.debug(`Config devices: ${JSON.stringify(this.config.devices)}`);
+        /** Cache of initialized lights */
+        const lightDevices = new Map();
 
-        for (const devConf of this.config.devices) {
+        /** Keeps track of rodret-light pairs to prevent duplicates */
+        const seenMappings = new Set();
+
+        for (const { rodretId, lightId } of this.config.devices) {
+            if (!rodretId || !lightId) {
+                this.log.warn(`Skipping invalid device config: ${JSON.stringify({ rodretId, lightId })}`);
+                continue;
+            }
+
+            // ...just to track duplicate device-light mappings
+            const pairKey = `${rodretId}::${lightId}`;
+            if (seenMappings.has(pairKey)) {
+                this.log.warn(`Duplicate mapping ${pairKey} — skipping.`);
+                continue;
+            }
+            seenMappings.add(pairKey);
+
             try {
-                if (!devConf.rodretId || !devConf.lightId) {
-                    this.log.warn(`Skipping invalid device configuration: ${JSON.stringify(devConf)}`);
-                    continue;
-                }
-                if (devConf.rodretId === !devConf.lightId) {
-                    this.log.error(`RODRET and light id must not be same. Skipping invalid device configuration.`);
-                    continue;
-                }
-
-                // Duplicate checks
-                if (usedRodretIds.has(devConf.rodretId)) {
-                    this.log.error(`RODRET device ${devConf.rodretId} is configured multiple times! Skipping.`);
-                    continue;
-                }
-                if (usedLightIds.has(devConf.lightId)) {
-                    this.log.error(`Light ${devConf.lightId} is already controlled by another RODRET! Skipping.`);
-                    continue;
+                // Initialize or reuse the RodretDevice
+                let rodret = rodretDevices.get(rodretId);
+                if (!rodret) {
+                    rodret = new RodretDevice(this, rodretId);
+                    await rodret.init();
+                    await rodret.subscribe();
+                    rodretDevices.set(rodretId, rodret);
                 }
 
-                // create LightDevice instance and validate
-                const light = new LightDevice(this, devConf.lightId);
-                await light.init();
+                // Initialize or reuse the LightDevice
+                let light = lightDevices.get(lightId);
+                if (!light) {
+                    light = new LightDevice(this, lightId);
+                    await light.init();
+                    lightDevices.set(lightId, light);
+                }
 
-                // Create and register device instance
-                const device = new RodretDevice(this, devConf.rodretId, light);
-                await device.init();
-                await device.subscribe();
+                // Attach the light to the rodret
+                rodret.addLight(light);
 
-                this.deviceMap.set(device.rodretActionId, device);
-
-                // remember used ids for duplicate checks
-                usedRodretIds.add(devConf.rodretId);
-                usedLightIds.add(devConf.lightId);
-
-                this.log.info(
-                    `Configured device '${device.name}': rodret=${devConf.rodretId}, light=${devConf.lightId}`,
-                );
+                this.log.debug(`Linked RODRET ${rodretId} -> Light ${lightId}`);
             } catch (err) {
-                this.log.error(`Skipping device config ${JSON.stringify(devConf)}: ${err.message}`);
+                this.log.error(`Failed to initialize RODRET ${rodretId} or Light ${lightId}: ${err.message}`);
             }
         }
 
-        if (this.deviceMap.size === 0) {
-            this.log.warn('No valid devices configured after validation, adapter will be idle.');
+        if (rodretDevices.size === 0) {
+            this.log.warn('No valid RODRET devices configured — adapter will remain idle.');
+            return;
         }
+
+        // Register all rodrets in deviceMap for state event handling
+        this.deviceMap = new Map([...rodretDevices.values()].map(device => [device.rodretActionId, device]));
+
+        this.log.info(
+            `Adapter initialized with ${rodretDevices.size} RODRET devices controlling ${
+                seenMappings.size
+            } unique light mappings.`,
+        );
     }
 
     /**
@@ -98,10 +106,6 @@ class IkeaRodret extends utils.Adapter {
     onUnload(callback) {
         this.log.debug('Unloading adapter...');
         try {
-            for (const dev of this.deviceMap.values()) {
-                dev._clearDimInterval();
-            }
-
             callback();
         } catch (_e) {
             callback();

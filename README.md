@@ -130,6 +130,7 @@ Each RODRET-light mapping requires the following settings:
 
 ### **WORK IN PROGRESS**
 
+- (asc-ii) feat: full n:m mapping support between RODRET and light devices — a single RODRET can now control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.
 - (asc-ii) fix: log message with undefined values
 - (asc-ii) fix: translation in admin UI
 
