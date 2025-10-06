@@ -226,6 +226,7 @@ class LightDevice {
                 break;
 
             case ACTION_ON:
+                console.log('1');
                 await this._switch(true);
                 break;
 

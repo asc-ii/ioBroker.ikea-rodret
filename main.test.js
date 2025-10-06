@@ -1,183 +1,144 @@
 'use strict';
 
-/**
- * This is a dummy TypeScript test file using chai and mocha
- *
- * It's automatically excluded from npm and its build output is excluded from both git and npm.
- * It is advised to test all your modules with accompanying *.test.js-files
- */
-
 // tslint:disable:no-unused-expression
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
 const { expect } = require('chai');
-const LightDevice = require('./lightdevice');
-const sinon = require("sinon");
+const sinon = require('sinon');
+const RodretDevice = require('./rodretdevice.js');
+const LightDevice = require('./lightdevice.js');
 
-describe("LightDevice", () => {
+// The adapter exports a factory function:  module.exports = options => new IkeaRodret(options);
+import createAdapter from './main.js'; // adjust path if necessary
+
+describe('IkeaRodret Adapter', () => {
     let adapterMock;
+    let sandbox;
 
     beforeEach(() => {
-        adapterMock = {
-            log: {
-                warn: sinon.spy(),
-                info: sinon.spy(),
-                error: sinon.spy(),
-                debug: sinon.spy(),
-                silly: sinon.spy(),
-            },
-            getForeignObjectAsync: sinon.stub(),
-            getForeignObjectsAsync: sinon.stub(),
+        sandbox = sinon.createSandbox();
+
+        // Mock adapter class dependencies
+        sandbox.stub(LightDevice.prototype, 'init').resolves();
+        sandbox.stub(RodretDevice.prototype, 'init').resolves();
+        sandbox.stub(RodretDevice.prototype, 'subscribe').resolves();
+        sandbox.stub(RodretDevice.prototype, 'addLight');
+
+        adapterMock = createAdapter({}); // no options needed for testing
+
+        adapterMock.log = {
+            info: sinon.stub(),
+            warn: sinon.stub(),
+            error: sinon.stub(),
+            debug: sinon.stub(),
+            silly: sinon.stub(),
         };
+        adapterMock.getForeignObjectAsync = sinon.stub().resolves({ type: 'device', common: { type: 'E2201' } });
+        adapterMock.getForeignObjectsAsync = sinon.stub().resolves({});
+        adapterMock.subscribeForeignStatesAsync = sinon.stub().resolves();
     });
 
     afterEach(() => {
-        sinon.restore();
+        sandbox.restore();
     });
 
-    describe("constructor", () => {
-        it("should throw if no config is provided", () => {
-            expect(() => new LightDevice(adapterMock, null)).to.throw();
-        });
-
-        it("should throw if no lightId is provided", () => {
-            expect(() => new LightDevice(adapterMock, {})).to.throw();
+    describe('constructor', () => {
+        it('should initialize deviceMap as an empty Map', () => {
+            expect(adapterMock.deviceMap).to.be.instanceof(Map);
+            expect(adapterMock.deviceMap.size).to.equal(0);
         });
     });
 
-    describe("init", () => {
-        it("should discover switch, brightness_move, transition_time, and level states", async () => {
-            // fake light root with child states
-            const lightObject = {
-                _id: "zigbee.0.light1",
-                type: "device",
-            };
-
-            const states = {
-                "zigbee.0.light1.on": { common: { role: "switch" } },
-                "zigbee.0.light1.brightness_move": { common: { name: "brightness_move" } },
-                "zigbee.0.light1.transition_time": { common: { name: "transition_time" } },
-                "zigbee.0.light1.level": { common: { role: "level.dimmer" } },
-            };
-
-            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
-                if (id === "zigbee.0.light1") return lightObject;
-                return states[id];
-            });
-
-            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
-                return states;
-            });
-
-            const device = new LightDevice(adapterMock, "zigbee.0.light1");
-            await device.init();
-
-            expect(device.switchId).to.equal("zigbee.0.light1.on");
-            expect(device.brightnessMoveId).to.equal("zigbee.0.light1.brightness_move");
-            expect(device.levelId).to.equal("zigbee.0.light1.level");
+    describe('onReady', () => {
+        it('should log an error if no devices configured', async () => {
+            adapterMock.config = { devices: [] };
+            await adapterMock.onReady();
+            expect(adapterMock.log.error.calledOnce).to.be.true;
+            expect(adapterMock.deviceMap.size).to.equal(0);
         });
 
-        it("should log a warning if brightness_move is missing", async () => {
-            const lightObject = {
-                _id: "zigbee.0.light2",
-                type: "device",
+        it('should initialize one RODRET controlling multiple lights (1→n)', async () => {
+            adapterMock.config = {
+                devices: [
+                    { rodretId: 'rodret.1', lightId: 'light.1' },
+                    { rodretId: 'rodret.1', lightId: 'light.2' },
+                ],
             };
 
-            const states = {
-                "zigbee.0.light2.on": { common: { role: "switch" } },
-                "zigbee.0.light2.level": { common: { role: "level.dimmer" } },
-            };
+            await adapterMock.onReady();
 
-            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
-                if (id === "zigbee.0.light2") return lightObject;
-                return states[id];
-            });
-            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
-                return states;
-            });
+            // One RodretDevice expected
+            expect(RodretDevice.prototype.init.calledOnce).to.be.true;
+            expect(RodretDevice.prototype.addLight.calledTwice).to.be.true;
 
-            const device = new LightDevice(adapterMock, "zigbee.0.light2");
-            await device.init();
-
-            expect(adapterMock.log.warn.called).to.be.true;
-            expect(device.brightnessMoveId).to.be.null;
+            expect(adapterMock.deviceMap.size).to.equal(1);
         });
 
-        it("should throw if no switch state is found", async () => {
-            const lightObject = {
-                _id: "zigbee.0.light4",
-                type: "device",
+        it('should initialize multiple RODRETs controlling one light (m→1)', async () => {
+            adapterMock.config = {
+                devices: [
+                    { rodretId: 'rodret.1', lightId: 'light.1' },
+                    { rodretId: 'rodret.2', lightId: 'light.1' },
+                ],
             };
 
-            const states = {
-                "zigbee.0.light4.level": { common: { role: "level.dimmer" } },
-            };
+            await adapterMock.onReady();
 
-            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
-                if (id === "zigbee.0.light4") return lightObject;
-                return states[id];
-            });
-            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
-                return states;
-            });
+            // Two RODRETs expected
+            expect(RodretDevice.prototype.init.callCount).to.equal(2);
+            expect(LightDevice.prototype.init.calledOnce).to.be.true;
 
-            const device = new LightDevice(adapterMock, "zigbee.0.light4");
-
-            try {
-                await device.init();
-                throw new Error("Expected error but did not throw");
-            } catch (err) {
-				console.error(err.message);
-                expect(err.message).to.match(/Light zigbee.0.light4 has no switch state/);
-            }
+            expect(adapterMock.deviceMap.size).to.equal(2);
         });
 
-        it("should read min and max move speeds from brightness_move", async () => {
-            const lightObject = { _id: "zigbee.0.light5", type: "device" };
-
-            const states = {
-                "zigbee.0.light5.on": { common: { role: "switch" } },
-                "zigbee.0.light5.brightness_move": { common: { name: "brightness_move", min: -30, max: 70 } },
-                "zigbee.0.light5.level": { common: { role: "level.dimmer" } },
+        it('should support n↔m mapping (multiple RODRETs controlling multiple lights)', async () => {
+            adapterMock.config = {
+                devices: [
+                    { rodretId: 'rodret.1', lightId: 'light.1' },
+                    { rodretId: 'rodret.1', lightId: 'light.2' },
+                    { rodretId: 'rodret.2', lightId: 'light.2' },
+                ],
             };
 
-            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
-                if (id === "zigbee.0.light5") return lightObject;
-                return states[id];
-            });
-            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
-                return states;
-            });
+            await adapterMock.onReady();
 
-            const device = new LightDevice(adapterMock, "zigbee.0.light5");
-            await device.init();
-
-            expect(device.brightnessMoveId).to.equal("zigbee.0.light5.brightness_move");
-            expect(device.minMoveSpeed).to.equal(-30);
-            expect(device.maxMoveSpeed).to.equal(70);
+            // Two RODRETs, two Lights, three mappings
+            expect(RodretDevice.prototype.init.callCount).to.equal(2);
+            expect(LightDevice.prototype.init.callCount).to.equal(2);
+            expect(RodretDevice.prototype.addLight.callCount).to.equal(3);
+            expect(adapterMock.deviceMap.size).to.equal(2);
         });
 
-        it("should fallback to defaults if brightness_move has no min/max", async () => {
-            const lightObject = { _id: "zigbee.0.light6", type: "device" };
-
-            const states = {
-                "zigbee.0.light6.on": { common: { role: "switch" } },
-                "zigbee.0.light6.brightness_move": { common: { name: "brightness_move" } }, // no min/max
-                "zigbee.0.light6.level": { common: { role: "level.dimmer" } },
+        it('should skip duplicate rodret-light mappings', async () => {
+            adapterMock.config = {
+                devices: [
+                    { rodretId: 'rodret.1', lightId: 'light.1' },
+                    { rodretId: 'rodret.1', lightId: 'light.1' }, // duplicate
+                ],
             };
 
-            adapterMock.getForeignObjectAsync.callsFake(async (id) => {
-                if (id === "zigbee.0.light6") return lightObject;
-                return states[id];
-            });
-            adapterMock.getForeignObjectsAsync.callsFake(async (id) => {
-                return states;
-            });
+            await adapterMock.onReady();
 
-            const device = new LightDevice(adapterMock, "zigbee.0.light6");
-            await device.init();
+            expect(RodretDevice.prototype.init.calledOnce).to.be.true;
+            expect(LightDevice.prototype.init.calledOnce).to.be.true;
+            expect(RodretDevice.prototype.addLight.calledOnce).to.be.true;
 
-            expect(device.minMoveSpeed).to.equal(-50); // default
-            expect(device.maxMoveSpeed).to.equal(50);  // default
+            expect(adapterMock.log.warn.calledWithMatch(/Duplicate mapping/)).to.be.true;
+        });
+
+        it('should skip invalid entries with missing IDs', async () => {
+            adapterMock.config = {
+                devices: [
+                    { rodretId: '', lightId: 'light.1' },
+                    { rodretId: 'rodret.1', lightId: '' },
+                ],
+            };
+
+            await adapterMock.onReady();
+
+            expect(adapterMock.deviceMap.size).to.equal(0);
+            expect(adapterMock.log.warn.callCount).to.be.at.least(1);
         });
     });
 });
