@@ -19,6 +19,7 @@ describe('RodretDevice', () => {
         };
 
         lightMock = {
+            handleAction: sinon.stub().resolves(),
             _switch: sinon.stub().resolves(),
             _dimUp: sinon.stub().resolves(),
             _dimDown: sinon.stub().resolves(),
@@ -61,24 +62,25 @@ describe('RodretDevice', () => {
 
     it('should delegate actions to light device', async () => {
         const rodretId = 'zigbee.0.rodret3';
-        const device = new RodretDevice(adapterMock, rodretId, lightMock);
+        const device = new RodretDevice(adapterMock, rodretId);
+        device.lights = [lightMock]; // add mock light
 
-        await device.handleAction('on', rodretId);
-        expect(lightMock._switch.calledWith(true)).to.be.true;
+        await device.handleAction('on');
+        expect(lightMock.handleAction.calledWith('on', rodretId)).to.be.true;
 
-        await device.handleAction('off', rodretId);
-        expect(lightMock._switch.calledWith(false)).to.be.true;
+        await device.handleAction('off');
+        expect(lightMock.handleAction.calledWith('off', rodretId)).to.be.true;
 
-        await device.handleAction('brightness_up', rodretId);
-        expect(lightMock._dimUp.called).to.be.true;
+        await device.handleAction('brightness_move_up');
+        expect(lightMock.handleAction.calledWith('brightness_move_up', rodretId)).to.be.true;
 
-        await device.handleAction('brightness_down', rodretId);
-        expect(lightMock._dimDown.called).to.be.true;
+        await device.handleAction('brightness_move_down');
+        expect(lightMock.handleAction.calledWith('brightness_move_down', rodretId)).to.be.true;
 
-        await device.handleAction('brightness_stop', rodretId);
-        expect(lightMock._stopDim.called).to.be.true;
+        await device.handleAction('brightness_stop');
+        expect(lightMock.handleAction.calledWith('brightness_stop', rodretId)).to.be.true;
 
-        await device.handleAction('unknown_action', rodretId);
-        expect(adapterMock.log.warn.called).to.be.true;
+        await device.handleAction('unknown_action');
+        expect(lightMock.handleAction.calledWith('unknown_action', rodretId)).to.be.true;
     });
 });

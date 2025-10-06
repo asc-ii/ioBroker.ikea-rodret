@@ -1,3 +1,5 @@
+const LightDevice = require("./lightdevice");
+
 const ACTION_SUFFIX = 'action';
 
 /**
@@ -19,6 +21,7 @@ class RodretDevice {
 
         this.adapter = adapter;
         this.rodretId = rodretId;
+        /** @type {LightDevice[]} */
         this.lights = [];
         this.rodretActionId = `${this.rodretId}.${ACTION_SUFFIX}`;
     }
