@@ -23,8 +23,6 @@ brighten or dim it smoothly while you hold the button — no extra scripting req
 
 Currently, only certain device types are supported (see below).
 
----
-
 ## How it Works
 
 1. The adapter **monitors RODRET button actions**.
@@ -36,18 +34,16 @@ Currently, only certain device types are supported (see below).
 
 ### Dimming Logic
 
-- **Dimming up (`dimUp`)**:
+- **Dimming up**:
     - If the light is off, it is automatically switched on before dimming.
     - The light’s brightness increases continuously until:
         - Maximum brightness (100) is reached, or
         - The STOP action is triggered.
 
-- **Dimming down (`dimDown`)**:
+- **Dimming down**:
     - The light’s brightness decreases continuously.
     - When brightness reaches 0:
         - Dimming automatically stops.
-
----
 
 ## Required Objects / States
 
@@ -77,8 +73,6 @@ Currently, only certain device types are supported (see below).
 
 > If a light **does not have `brightness_move` or level**, only on/off control will work.
 
----
-
 ## Configuration Settings
 
 Each RODRET-light mapping requires the following settings:
@@ -92,8 +86,6 @@ Each RODRET-light mapping requires the following settings:
 
 > Note: You **do not need to configure moveSpeed or transitionTime**. The adapter reads `transition_time` from the light if available, and uses a default dim speed internally.
 
----
-
 ## Supported Devices
 
 - **RODRET buttons** (IKEA) — wired push buttons.
@@ -101,25 +93,11 @@ Each RODRET-light mapping requires the following settings:
 - **Lights with brightness_move & level** — supports dimming up/down with automatic stop.
 - Other lights or devices without these states are **currently not tested/supported**.
 
----
-
-## Behavior Summary
-
-| Button Action          | Effect on Light                                   |
-| ---------------------- | ------------------------------------------------- |
-| `on`                   | Switch light on                                   |
-| `off`                  | Switch light off                                  |
-| `brightness_move_up`   | Dimming up (light switched on if off)             |
-| `brightness_move_down` | Dimming down (light switches off if brightness 0) |
-| `brightness_stop`      | Stop dimming                                      |
-
----
-
 ## Notes
 
 - The adapter **handles multiple RODRET-light pairs** independently.
-- The adapter **prevents multiple RODRET buttons from controlling the same light** to avoid conflicts.
 - Dimming is **continuous** until max/min brightness or STOP is triggered.
+- A single RODRET can control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.
 
 ## Changelog
 
