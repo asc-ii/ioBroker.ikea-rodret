@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ikea-rodret",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "news": {
+      "0.0.9": {
+        "en": "fix: remove releases new from io-packages.json (adapter checker was complaining)",
+        "de": "fix: entfernen neuheiten von io-packages. json (adapter-checker hat sich beschwert)",
+        "ru": "исправление: удаление высвобождений из io-пакетов. джейсон (адаптер чекер жаловался)",
+        "pt": "correção: remover lançamentos novos de io-pacotes. json (adaptador verificador estava reclamando)",
+        "nl": "fix: verwijder releases nieuw uit io-packages. json",
+        "fr": "correction: supprimer les versions nouvelles des io-packages. json (l'auditeur s'est plaint)",
+        "it": "fix: rimuovere releases new da io-packages. json (adapter checker si lamentava)",
+        "es": "fijación: eliminar liberaciones nuevas de io-paquetes. json (se estaba quejando el cajero de la cabina)",
+        "pl": "fix: usuń wydania z pakietów jo-. json (sprawdzacz adaptera narzekał)",
+        "uk": "фіксувати: знімати нові від io-packages. json (відповідач скаржився)",
+        "zh-cn": "固定:从io-package中移除新的释放。 json(适应检查器在抱怨)"
+      },
       "0.0.8": {
         "en": "feat: full n:m mapping support between RODRET and light devices — a single RODRET can now control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.\nfix: log message with undefined values\nfix: translation in admin UI",
         "de": "feat: volle n:m-Mapping-Unterstützung zwischen RODRET und Lichtgeräten – ein einziges RODRET kann nun mehrere Lichter steuern, und mehrere RODRETs können das gleiche Licht mit koordinierter Zugriffsbehandlung steuern.\nfix: protokollnachricht mit undefinierten werten\nfix: Übersetzung in admin UI",

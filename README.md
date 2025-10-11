@@ -105,8 +105,7 @@ Each RODRET-light mapping requires the following settings:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.0.9 (2025-10-11)
 
 - (asc-ii) fix: remove releases new from io-packages.json (adapter checker was complaining)
 
