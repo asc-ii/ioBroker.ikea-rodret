@@ -105,8 +105,7 @@ Each RODRET-light mapping requires the following settings:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.0.8 (2025-10-11)
 
 - (asc-ii) feat: full n:m mapping support between RODRET and light devices — a single RODRET can now control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.
 - (asc-ii) fix: log message with undefined values
@@ -115,8 +114,6 @@ Each RODRET-light mapping requires the following settings:
 ### 0.0.7 (2025-10-05)
 
 - (asc-ii) rework: using `brightness_move` state for dimming instead of custom timer settings
-
-## Changelog (History)
 
 ### 0.0.6 (2025-10-02)
 

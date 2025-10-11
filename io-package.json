@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ikea-rodret",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "news": {
+      "0.0.8": {
+        "en": "feat: full n:m mapping support between RODRET and light devices — a single RODRET can now control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.\nfix: log message with undefined values\nfix: translation in admin UI",
+        "de": "feat: volle n:m-Mapping-Unterstützung zwischen RODRET und Lichtgeräten – ein einziges RODRET kann nun mehrere Lichter steuern, und mehrere RODRETs können das gleiche Licht mit koordinierter Zugriffsbehandlung steuern.\nfix: protokollnachricht mit undefinierten werten\nfix: Übersetzung in admin UI",
+        "ru": "полная поддержка отображения n:m между RODRET и световыми устройствами — один RODRET теперь может управлять несколькими огнями, а несколько RODRET могут управлять одним и тем же светом с скоординированной обработкой доступа.\nfix: log сообщение с неопределенными значениями\nfix: перевод в admin UI",
+        "pt": "feat: suporte de mapeamento completo n:m entre RODRET e dispositivos de luz — um único RODRET pode agora controlar várias luzes, e vários RODRETs podem controlar a mesma luz com o manuseio coordenado do acesso.\ncorreção: mensagem de log com valores indefinidos\ncorreção: tradução na interface de administração",
+        "nl": "feat: full n:m mapping support tussen RODRET en lichtapparaten Een enkele RODRET kan nu meerdere lampen bedienen, en meerdere RODRETs kunnen hetzelfde licht besturen met gecoördineerde toegang.\nfix: logbericht met ongedefinieerde waarden\nfix: vertaling in admin UI",
+        "fr": "property: full n:m mapping support entre RODRET et les dispositifs de lumière — un seul RODRET peut désormais contrôler plusieurs lumières, et plusieurs RODRETs peuvent contrôler la même lumière avec une gestion d'accès coordonnée.\ncorrectif : message journal avec des valeurs non définies\ncorrection: traduction dans l'interface utilisateur admin",
+        "it": "feat: full n:m supporto di mappatura tra RODRET e dispositivi leggeri — un singolo RODRET può ora controllare più luci, e più RODRET possono controllare la stessa luce con gestione coordinata dell'accesso.\ncorrezione: messaggio di log con valori non definiti\ncorrezione: traduzione in admin UI",
+        "es": "feat: soporte completo de cartografía n:m entre RODRET y dispositivos ligeros: un solo RODRET puede controlar múltiples luces, y múltiples RODRET pueden controlar la misma luz con el manejo coordinado del acceso.\nfijación: mensaje de registro con valores no definidos\narreglar: traducción en admin UI",
+        "pl": "feat: full n: m mapping support between RODRET and light devices - pojedynczy RODRET może teraz sterować wieloma światłami, a wiele RODRET może kontrolować to samo światło za pomocą skoordynowanej obsługi dostępu.\nfix: komunikat logowania z nieokreślonymi wartościami\nfix: tłumaczenie w języku administracyjnym",
+        "uk": "feat: повний n:m підтримка картографування між RODRET і світловими пристроями — єдиний RODRET тепер може керувати декількома світильниками, а багаторазові RODRETs можуть керувати тим самим світлом з узгодженим доступом.\nвиправити: лог повідомлення з невизнаними значеннями\nвиправити: переклад в адмін UI",
+        "zh-cn": "功率:RODRET和光设备之间的全n:m映射支持——一个单一的RODRET现在可以控制多个灯光,多个RODRET可以通过协调的接入处理来控制同一个光.\n固定:未定义值的日志消息\n修补: 以管理员 UI 翻译"
+      },
       "0.0.7": {
         "en": "rework: using `brightness_move` state for dimming instead of custom timer settings",
         "de": "rework: verwendung von `brightness_move`-zustand zum dimmen anstelle von benutzerdefinierten timer-einstellungen",
@@ -80,19 +93,6 @@
         "pl": "poprawianie tłumaczeń",
         "uk": "фіксувати переклади",
         "zh-cn": "固定翻译"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "titleLang": {
