@@ -108,9 +108,9 @@ Each RODRET-light mapping requires the following settings:
 
 ### **WORK IN PROGRESS**
 
-### 0.0.8 (2025-10-11)
-
 - (asc-ii) fix: remove releases new from io-packages.json (adapter checker was complaining)
+
+### 0.0.8 (2025-10-11)
 
 - (asc-ii) feat: full n:m mapping support between RODRET and light devices — a single RODRET can now control multiple lights, and multiple RODRETs can control the same light with coordinated access handling.
 - (asc-ii) fix: log message with undefined values
