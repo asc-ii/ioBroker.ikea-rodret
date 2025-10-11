@@ -138,6 +138,8 @@ Each RODRET-light mapping requires the following settings:
 
 - (asc-ii) rework: using `brightness_move` state for dimming instead of custom timer settings
 
+## Changelog (History)
+
 ### 0.0.6 (2025-10-02)
 
 - (asc-ii) fix logging
